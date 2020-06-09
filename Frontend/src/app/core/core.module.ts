@@ -31,7 +31,6 @@ import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { NotificationsComponent } from './navigation/toolbar/notifications/notifications.component';
 import { ToolbarComponent } from './navigation/toolbar/toolbar.component';
 import { AccountComponent } from './settings/account/account.component';
-import { BillingComponent } from './settings/billing/billing.component';
 import { GeneralComponent } from './settings/general/general.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -73,7 +72,6 @@ import { SettingsComponent } from './settings/settings.component';
         NotificationsComponent,
         GeneralComponent,
         AccountComponent,
-        BillingComponent,
         NotificationToastComponent
     ],
     exports: [

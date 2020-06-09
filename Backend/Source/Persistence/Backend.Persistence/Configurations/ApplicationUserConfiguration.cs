@@ -13,15 +13,13 @@ namespace Backend.Persistence.Configurations
         {
             builder.Property(x => x.CreatedOn).HasDefaultValueSql("NOW()");
             builder.Property(x => x.LastModified).HasDefaultValueSql("NOW()").ValueGeneratedOnAddOrUpdate();
-            builder.Property(x => x.TrialDuration).HasDefaultValue(15);
             builder.Property(x => x.Active).HasDefaultValue(true);
             builder.Property(x => x.Avatar).HasValueGenerator<AvatarGenerator>();
             builder.Ignore(x => x.FullName);
 
             builder
                 .HasDiscriminator(x => x.AccountType)
-                .HasValue<ApplicationUser>(AccountType.User)
-                .HasValue<Admin>(AccountType.Admin);
+                .HasValue<ApplicationUser>(AccountType.User);
 
             builder.Property(x => x.AccountType)
                 .HasConversion(

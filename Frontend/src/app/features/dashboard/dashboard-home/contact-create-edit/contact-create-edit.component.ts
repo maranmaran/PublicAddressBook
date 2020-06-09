@@ -12,7 +12,8 @@ import { ServerStatusCodes } from 'src/models/error/status-codes/server.codes';
 import { contactCreated, contactUpdated } from 'src/ngrx/contacts/contact.actions';
 import { AppState } from 'src/ngrx/global-setup.ngrx';
 import { disableErrorDialogs } from 'src/ngrx/user-interface/ui.actions';
-import { PhoneNumberValidatior } from './../../../../../business/validators/phone-number.validator';
+import { PhoneValidationService } from './../../../../../business/services/shared/phone-validation.service';
+import { PhoneNumberValidator } from './../../../../../business/validators/phone-number.validator';
 import { UpdateContactRequest } from './../../../../../models/contacts/update-contact.request';
 import { ValidationErrors } from './../../../../../models/error/error-details.model';
 import { enableErrorDialogs } from './../../../../../ngrx/user-interface/ui.actions';
@@ -29,7 +30,7 @@ export class ContactCreateEditComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
     private contactService: ContactService,
     private dialogRef: MatDialogRef<ContactCreateEditComponent>,
-    private phoneValidator: PhoneNumberValidatior,
+    private phoneValidationService: PhoneValidationService,
     @Inject(MAT_DIALOG_DATA) public data: { title: string, action: CRUD, contact: Contact }) { }
 
   form: FormGroup;
@@ -55,10 +56,10 @@ export class ContactCreateEditComponent implements OnInit, OnDestroy {
     });
 
     if (!this.contact.phoneNumbers || this.contact.phoneNumbers.length == 0) {
-      this.phoneNumbers.push(new FormControl(''));
+      this.phoneNumbers.push(new FormControl('', [], PhoneNumberValidator.isValidPhoneNumber(this.phoneValidationService)));
     } else {
       this.contact.phoneNumbers.forEach(numberObj => {
-        this.phoneNumbers.push(new FormControl(numberObj.number, [this.phoneValidator.isValidPhoneNumber.bind(this.phoneValidator)]))
+        this.phoneNumbers.push(new FormControl(numberObj.number, [], PhoneNumberValidator.isValidPhoneNumber(this.phoneValidationService)))
       });
     }
 
@@ -78,7 +79,7 @@ export class ContactCreateEditComponent implements OnInit, OnDestroy {
   }
 
   addPhoneControl() {
-    this.phoneNumbers.push(new FormControl('', this.phoneValidator.isValidPhoneNumber.bind(this.phoneValidator)));
+    this.phoneNumbers.push(new FormControl('', [], PhoneNumberValidator.isValidPhoneNumber(this.phoneValidationService)));
   }
 
   removePhoneControl(index: number) {

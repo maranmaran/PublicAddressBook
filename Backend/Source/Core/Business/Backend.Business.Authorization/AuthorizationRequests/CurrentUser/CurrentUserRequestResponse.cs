@@ -1,8 +1,5 @@
 ﻿using Backend.Domain.Entities.User;
-using Backend.Library.Payment.Enums;
-using Stripe;
 using System;
-using System.Collections.Generic;
 using AccountType = Backend.Domain.Enum.AccountType;
 
 namespace Backend.Business.Authorization.AuthorizationRequests.CurrentUser
@@ -23,11 +20,5 @@ namespace Backend.Business.Authorization.AuthorizationRequests.CurrentUser
         public bool Active { get; set; }
         public UserSetting UserSetting { get; set; }
 
-        // Billing
-        public int TrialDaysRemaining { get; set; }
-        public string CustomerId { get; set; }
-        public IEnumerable<Plan> Plans { get; set; }
-        public Subscription SubscriptionInfo { get; set; }
-        public SubscriptionStatus SubscriptionStatus { get; set; }
     }
 }

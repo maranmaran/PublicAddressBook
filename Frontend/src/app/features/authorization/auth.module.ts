@@ -2,10 +2,6 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { SetPasswordComponent } from './set-password/set-password.component';
-
 
 @NgModule({
     imports: [
@@ -14,9 +10,6 @@ import { SetPasswordComponent } from './set-password/set-password.component';
     ],
     declarations: [
         LoginComponent,
-        RegisterComponent,
-        ResetPasswordComponent,
-        SetPasswordComponent
     ],
     exports: [
     ],

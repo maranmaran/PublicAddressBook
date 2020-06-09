@@ -44,6 +44,8 @@
     "NO_DATA": "No records"
   },
   "NOTIFICATIONS": {
+    "MEDIA_ADDED": "Media added",
+    "CONTACT_CHANGED": "Contact changed",
     "NO_NOTIFICATIONS": "No notifications to show",
     "SHOW_MORE": "Show more notifications"
   },

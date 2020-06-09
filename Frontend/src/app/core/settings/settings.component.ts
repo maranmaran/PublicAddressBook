@@ -8,7 +8,6 @@ import { take } from 'rxjs/operators';
 import { UIService } from 'src/business/services/shared/ui.service';
 import { UIProgressBar } from 'src/business/shared/ui-progress-bars.enum';
 import { UISidenav, UISidenavAction } from 'src/business/shared/ui-sidenavs.enum';
-import { isCoachOrSoloAthlete } from 'src/ngrx/auth/auth.selectors';
 import { AppState } from 'src/ngrx/global-setup.ngrx';
 import { setActiveProgressBar } from 'src/ngrx/user-interface/ui.actions';
 import { getLoadingState } from 'src/ngrx/user-interface/ui.selectors';
@@ -39,7 +38,6 @@ export class SettingsComponent implements OnInit {
   ngOnInit() {
     // store state setup
     this.store.dispatch(setActiveProgressBar({ progressBar: UIProgressBar.SettingsScreen }));
-    this.isCoach = this.store.select(isCoachOrSoloAthlete);
 
     this.loading$ = getLoadingState(this.store, UIProgressBar.SettingsScreen);;
 

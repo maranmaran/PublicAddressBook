@@ -1,15 +1,15 @@
-﻿using Backend.Domain.DeserializatorPOCOs;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Backend.Domain.DeserializatorPOCOs;
 using Backend.Domain.Entities.Auditing;
 using Backend.Domain.Entities.Contacts;
 using Backend.Infrastructure.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace Backend.Business.Contacts.Services
+namespace Backend.Infrastructure.Services
 {
     public class ActivityService : IActivityService
     {

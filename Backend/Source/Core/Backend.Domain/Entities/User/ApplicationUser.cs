@@ -9,7 +9,6 @@ namespace Backend.Domain.Entities.User
     {
 
         public Guid Id { get; set; }
-        public string CustomerId { get; set; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -28,7 +27,6 @@ namespace Backend.Domain.Entities.User
         public bool Active { get; set; }
 
         public AccountType AccountType { get; set; }
-        public int TrialDuration { get; set; }
 
         public Guid UserSettingId { get; set; }
         public virtual UserSetting UserSetting { get; set; }

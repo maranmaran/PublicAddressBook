@@ -1,12 +1,8 @@
 ﻿using Backend.Business.Notifications.Interfaces;
-using Backend.Business.Notifications.NotificationRequests.CreatePushNotification;
-using Backend.Business.Notifications.NotificationRequests.NotifyUser;
 using Backend.Business.Notifications.NotificationRequests.ReadNotification;
-using Backend.Domain.Enum;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Backend.Business.Notifications.NotificationRequests
@@ -19,18 +15,6 @@ namespace Backend.Business.Notifications.NotificationRequests
         public NotificationHub(IMediator mediator)
         {
             _mediator = mediator;
-        }
-
-        // TODO:
-        // CancellationToken support closed on march 31 https://github.com/aspnet/AspNetCore/issues/8813
-        // Check when new version releases
-        public async Task SendNotification(NotificationType type, string payload, Guid senderId, Guid receiverId)
-        {
-            // save to db
-
-            var notification = await _mediator.Send(new CreateNotificationRequest(type, payload, senderId, receiverId), CancellationToken.None);
-
-            await _mediator.Publish(new NotifyUserNotification(notification, receiverId));
         }
 
         public async Task ReadNotification(Guid id)

@@ -37,17 +37,11 @@
         <!--Notification settings-->
         <table>
             <th>{{ 'SETTINGS.GENERAL.INFORM_ME' | translate }}</th>
-            <th>{{ 'SHARED.EMAIL' | translate }}</th>
             <th>{{ 'SHARED.NOTIFICATION' | translate }}</th>
 
             <tr *ngFor="let notificationSetting of userSetting.notificationSettings">
                 <!-- TODO: Make this pascal case into something meaningful... -->
                 <td class="text-center"> {{ notificationTypeLabels[notificationSetting.notificationType] | translate}}
-                </td>
-                <td class="text-center">
-                    <mat-checkbox (change)="onNotificationSettingCheckboxChecked($event, notificationSetting)"
-                        [name]="'receiveMail'" [checked]="notificationSetting.receiveMail">
-                    </mat-checkbox>
                 </td>
                 <td class="text-center">
                     <mat-checkbox (change)="onNotificationSettingCheckboxChecked($event, notificationSetting)"

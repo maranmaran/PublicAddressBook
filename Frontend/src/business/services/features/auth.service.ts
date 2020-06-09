@@ -6,7 +6,6 @@ import { CookieService } from 'ngx-cookie-service';
 import { Subject, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CurrentUser } from 'src/models/authorization/current-user.model';
-import { SetPasswordRequest } from 'src/models/authorization/set-password.request';
 import { SignInRequest } from 'src/models/authorization/sign-in.request';
 import { BaseService } from '../base.service';
 
@@ -26,20 +25,6 @@ export class AuthService extends BaseService {
 
   public signIn(request: SignInRequest) {
     return this.http.post<CurrentUser>(this.url + 'SignIn', request)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  public setPassword(request: SetPasswordRequest) {
-    return this.http.post<CurrentUser>(this.url + 'SetPassword', request)
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  public resetPassword(email: string) {
-    return this.http.get(this.url + 'ResetPassword/' + email)
       .pipe(
         catchError(this.handleError)
       );

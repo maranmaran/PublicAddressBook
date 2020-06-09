@@ -5,10 +5,8 @@ using Backend.Domain;
 using Backend.Infrastructure.Extensions;
 using Backend.Infrastructure.Providers;
 using Backend.Library.AmazonS3.Extensions;
-using Backend.Library.Email.Extensions;
 using Backend.Library.Logging.Extensions;
 using Backend.Library.MediaCompression.Extensions;
-using Backend.Library.Payment.Extensions;
 using Backend.Persistence;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -67,13 +65,11 @@ namespace Backend.API.Extensions
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblies(new[]
                 {
                     // list all assemblies containing validators
-                    Assembly.GetAssembly(typeof(Mappings)),
                     Assembly.GetAssembly(typeof(Business.Notifications.Mappings)),
                     Assembly.GetAssembly(typeof(Business.Authorization.Mappings)),
-                    Assembly.GetAssembly(typeof(Business.Users.Mappings)),
                     Assembly.GetAssembly(typeof(Business.Media.Mappings)),
+                    Assembly.GetAssembly(typeof(Business.Users.Mappings)),
                     Assembly.GetAssembly(typeof(Business.Contacts.Mappings)),
-                    Assembly.GetAssembly(typeof(Business.Billing.Mappings)),
                 }))
                 .AddNewtonsoftJson(options =>
                 {
@@ -201,13 +197,11 @@ namespace Backend.API.Extensions
         {
             var assemblies = new Assembly[]
             {
-                Assembly.GetAssembly(typeof(Mappings)),
                 Assembly.GetAssembly(typeof(Business.Notifications.Mappings)),
+                Assembly.GetAssembly(typeof(Business.Media.Mappings)),
+                Assembly.GetAssembly(typeof(Business.Contacts.Mappings)),
                 Assembly.GetAssembly(typeof(Business.Authorization.Mappings)),
                 Assembly.GetAssembly(typeof(Business.Users.Mappings)),
-                Assembly.GetAssembly(typeof(Business.Media.Mappings)),
-                Assembly.GetAssembly(typeof(Business.Billing.Mappings)),
-                Assembly.GetAssembly(typeof(Business.Contacts.Mappings)),
             };
 
             services.AddMediatR(assemblies.ToArray());
@@ -247,13 +241,11 @@ namespace Backend.API.Extensions
             {
                 var config = new MapperConfiguration(c =>
                 {
-                    c.AddProfile<Mappings>();
-                    c.AddProfile<Business.Authorization.Mappings>();
                     c.AddProfile<Business.Notifications.Mappings>();
-                    c.AddProfile<Business.Users.Mappings>();
                     c.AddProfile<Business.Media.Mappings>();
-                    c.AddProfile<Business.Billing.Mappings>();
                     c.AddProfile<Business.Contacts.Mappings>();
+                    c.AddProfile<Business.Authorization.Mappings>();
+                    c.AddProfile<Business.Users.Mappings>();
                 });
 
                 return config.CreateMapper();
@@ -316,8 +308,6 @@ namespace Backend.API.Extensions
         {
             services.ConfigureAuthorizationServices();
             services.ConfigureInfrastructureServices();
-            services.ConfigureEmailServices();
-            services.ConfigurePaymentServices();
             services.ConfigureS3Services();
             services.ConfigureLoggingService();
             services.ConfigureMediaCompressionService(); // when needed
@@ -331,8 +321,6 @@ namespace Backend.API.Extensions
         public static void ConfigureCoreSettings(this IServiceCollection services, IConfiguration config)
         {
             services.ConfigureJwtSettings(config);
-            services.ConfigureEmailSettings(config);
-            services.ConfigurePaymentSettings(config);
             services.ConfigureAppSettings(config);
             services.ConfigureS3Settings(config);
             services.ConfigureLogLevelSettings(config);

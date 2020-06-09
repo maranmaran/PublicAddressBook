@@ -38,14 +38,14 @@
         </div>
 
         <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between center"
-            *ngFor="let _ of phoneNumbers.controls; let i = index">
+            *ngFor="let phoneNumberControl of phoneNumbers.controls; let i = index">
 
             <mat-form-field>
                 <input matInput [formControl]="phoneNumbers.controls[i]"
                     placeholder="{{ 'CONTACT.PHONE_NUMBER' | translate}}">
-                <!-- <mat-error *ngIf="username.invalid && username.errors">
-                    <div class="validation-error" *ngFor="let error of phoneNumberErrors">{{error}}</div>
-                </mat-error> -->
+                <mat-error *ngIf="phoneNumbers[i]?.errors?.phoneInvalid">
+                    <div class="validation-error">Invalid phone number</div>
+                </mat-error>
             </mat-form-field>
 
             <div id="actions" fxFlexLayout="column">

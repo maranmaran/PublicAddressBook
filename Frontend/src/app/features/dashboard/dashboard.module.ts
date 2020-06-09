@@ -8,7 +8,6 @@ import { UIService } from 'src/business/services/shared/ui.service';
 import { ContactEffects } from 'src/ngrx/contacts/contact.effects';
 import { contactReducer } from 'src/ngrx/contacts/contact.reducers';
 import { PhoneValidationService } from './../../../business/services/shared/phone-validation.service';
-import { PhoneNumberValidatior } from './../../../business/validators/phone-number.validator';
 import { ContactCreateEditComponent } from './dashboard-home/contact-create-edit/contact-create-edit.component';
 import { ContactDetailsComponent } from './dashboard-home/contact-details/contact-details.component';
 import { ContactListComponent } from './dashboard-home/contact-list/contact-list.component';
@@ -36,7 +35,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
         ContactService,
         ContactsResolver,
         PhoneValidationService,
-        PhoneNumberValidatior,
     ],
     entryComponents: [
     ]

@@ -23,13 +23,11 @@ export class PhoneValidationService {
     }
 
     validateNumber(number: string) {
-        console.log('here');
-
         if (this.useRegex == false) {
-            return this.httpClient.get<PhoneValidationResult>(`${this.baseUrl}&number=` + number + 'country_code=format=1');
+            return this.httpClient.get<PhoneValidationResult>(`${this.baseUrl}&number=` + number.trim() + '&country_code=&format=1');
         } else {
             let result = new PhoneValidationResult();
-            result.valid = number.match(this.regex).length > 0;
+            result.valid = number.trim().match(this.regex).length > 0;
             return of(result);
         }
     }

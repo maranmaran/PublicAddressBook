@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from 'src/business/guards/auth.guard';
 import { CurrentUserLoadedGuard } from 'src/business/guards/current-user-loaded.guard';
-import { SubscriptionGuard } from 'src/business/guards/subscription.guard';
 import { AppContainerComponent } from './app-container/app-container.component';
 
 const routes: Routes = [
@@ -16,14 +15,13 @@ const routes: Routes = [
     {
         path: 'app', canActivate: [CurrentUserLoadedGuard], children: [
             {
-                path: '', component: AppContainerComponent, canActivate: [AuthGuard, SubscriptionGuard], children: [
+                path: '', component: AppContainerComponent, canActivate: [AuthGuard], children: [
                     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
                     { path: 'dashboard', data: { isPublic: false }, loadChildren: () => import('src/app/features/dashboard/dashboard.module').then(mod => mod.DashboardModule) },
                 ]
             },
             {
                 path: 'settings', component: AppContainerComponent, canActivate: [AuthGuard], children: [
-                    // { path: 'billing', component: BillingComponent },
                 ],
             },
         ]

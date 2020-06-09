@@ -1,8 +1,5 @@
-using Backend.Domain;
 using Backend.Library.Logging.Interfaces;
-using Backend.Persistence;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -25,17 +22,11 @@ namespace Backend.API
 
                 try
                 {
-                    //// stripe seed..
-                    //var stripeSettings = services.GetService<StripeSettings>();
-                    //StripeConfiguration.ConfigureProducts(stripeSettings).Wait();
-                    // loggingService.LogInfo("Stripe configured and seeded").Wait();
-
                     //// comment this if you don't want seed values in migrations
-                    var contextInterface = services.GetService<IApplicationDbContext>();
-                    var context = (ApplicationDbContext)contextInterface;
-                    context.Database.Migrate();
-                    //DatabaseInitializer.Initialize(context, stripeConfiguration, passwordHasher);//<---Do your seeding here
-                    // loggingService.LogInfo("Database successfully migrated and seeded").Wait();
+                    //var contextInterface = services.GetService<IApplicationDbContext>();
+                    //var context = (ApplicationDbContext)contextInterface;
+                    //context.Database.Migrate();
+                    //loggingService.LogInfo("Database successfully migrated and seeded").Wait();
 
                     loggingService.LogInfo("Application started.").Wait();
                     host.Run();

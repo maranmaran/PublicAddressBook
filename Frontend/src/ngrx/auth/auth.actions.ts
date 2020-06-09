@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { CurrentUser } from 'src/models/authorization/current-user.model';
 import { SignInRequest } from 'src/models/authorization/sign-in.request';
 import { UserSetting } from 'src/models/domain-entities/user-settings.model';
-import { Subscription } from 'src/models/stripe/subscription.model';
 
 //#region Login actions
 
@@ -53,15 +52,6 @@ export const updateUserSetting = createAction(
 export const settingsUpdated = createAction(
     '[User API] User settings - UPDATED',
     props<{ settings: UserSetting }>()
-)
-
-export const addSubscription = createAction(
-    '[Billing API] Add subscription',
-    props<{ subscription: Subscription }>()
-)
-
-export const cancelSubscription = createAction(
-    '[Billing API] Cancel subscription'
 )
 
 //#endregion

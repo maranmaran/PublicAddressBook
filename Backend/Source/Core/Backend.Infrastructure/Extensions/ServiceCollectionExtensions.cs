@@ -1,5 +1,5 @@
-﻿using Backend.Business.Contacts.Services;
-using Backend.Infrastructure.Interfaces;
+﻿using Backend.Infrastructure.Interfaces;
+using Backend.Infrastructure.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

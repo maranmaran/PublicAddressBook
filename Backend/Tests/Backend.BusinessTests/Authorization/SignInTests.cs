@@ -4,8 +4,6 @@ using Backend.Business.Authorization.AuthorizationRequests.SignIn;
 using Backend.Business.Authorization.Interfaces;
 using Backend.Business.Authorization.Utils;
 using Backend.Domain.Entities.User;
-using Backend.Library.Payment.Enums;
-using Backend.Library.Payment.Interfaces;
 using FluentAssertions;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
@@ -135,11 +133,8 @@ namespace Backend.BusinessTests.Authorization
             context.Users.Add(user);
             await context.SaveChangesAsync(CancellationToken.None);
 
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetCustomerSubscriptionStatus(It.IsAny<string>()))
-                .ReturnsAsync(Enum.Parse<SubscriptionStatus>(subStatus));
 
-            var validator = new SignInRequestValidator(context, paymentServiceMock.Object);
+            var validator = new SignInRequestValidator(context);
 
             var request = new SignInRequest()
             {
@@ -167,11 +162,7 @@ namespace Backend.BusinessTests.Authorization
             context.Users.Add(user);
             await context.SaveChangesAsync(CancellationToken.None);
 
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetCustomerSubscriptionStatus(It.IsAny<string>()))
-                .ReturnsAsync(SubscriptionStatus.Active);
-
-            var validator = new SignInRequestValidator(context, paymentServiceMock.Object);
+            var validator = new SignInRequestValidator(context);
 
             var request = new SignInRequest()
             {
@@ -199,11 +190,7 @@ namespace Backend.BusinessTests.Authorization
             context.Users.Add(user);
             await context.SaveChangesAsync(CancellationToken.None);
 
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetCustomerSubscriptionStatus(It.IsAny<string>()))
-                .ReturnsAsync(SubscriptionStatus.Active);
-
-            var validator = new SignInRequestValidator(context, paymentServiceMock.Object);
+            var validator = new SignInRequestValidator(context);
 
             var request = new SignInRequest()
             {
@@ -231,11 +218,7 @@ namespace Backend.BusinessTests.Authorization
             context.Users.Add(user);
             await context.SaveChangesAsync(CancellationToken.None);
 
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetCustomerSubscriptionStatus(It.IsAny<string>()))
-                .ReturnsAsync(SubscriptionStatus.Active);
-
-            var validator = new SignInRequestValidator(context, paymentServiceMock.Object);
+            var validator = new SignInRequestValidator(context);
 
             var request = new SignInRequest()
             {
@@ -247,36 +230,5 @@ namespace Backend.BusinessTests.Authorization
             result.IsValid.Should().Be(false);
         }
 
-        [Fact]
-        public async Task SignInValidator_SubscriptionNotActiveOrTrialing_Fails()
-        {
-            // arrange
-            var user = new ApplicationUser()
-            {
-                Id = Guid.NewGuid(),
-                Username = "user",
-                PasswordHash = PasswordHasher.GetPasswordHash("passw"),
-                Active = true
-            };
-
-            var context = TestHelper.GetContext();
-            context.Users.Add(user);
-            await context.SaveChangesAsync(CancellationToken.None);
-
-            var paymentServiceMock = new Mock<IPaymentService>();
-            paymentServiceMock.Setup(x => x.GetCustomerSubscriptionStatus(It.IsAny<string>()))
-                .ReturnsAsync(SubscriptionStatus.Canceled);
-
-            var validator = new SignInRequestValidator(context, paymentServiceMock.Object);
-
-            var request = new SignInRequest()
-            {
-                Username = "user",
-                Password = "passw",
-            };
-
-            var result = validator.Validate(request);
-            result.IsValid.Should().Be(false);
-        }
     }
 }

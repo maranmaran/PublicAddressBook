@@ -50,7 +50,6 @@
             <div [hidden]="(loading$ | async)" [ngSwitch]="activeTab">
                 <app-general *ngSwitchCase="'General'"></app-general>
                 <app-account *ngSwitchCase="'Account'"></app-account>
-                <app-billing *ngSwitchCase="'Billing'"></app-billing>
             </div>
 
             <!-- loader -->

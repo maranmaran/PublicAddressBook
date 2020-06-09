@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Backend.Domain.Entities.User;
+﻿using Backend.Domain.Entities.User;
 using Backend.Domain.Enum;
 using Backend.Domain.Factories;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Backend.Persistence.Seed
 {
@@ -61,15 +61,13 @@ namespace Backend.Persistence.Seed
 
         private static IEnumerable<ApplicationUser> SeedUsers(ModelBuilder b)
         {
-            var users = UsersSeeder.GetUsers();
+            var user = UsersSeeder.GetUsers();
 
-            b.Entity<Admin>().HasData(users.Item1);
-            b.Entity<ApplicationUser>().HasData(users.Item2);
+            b.Entity<ApplicationUser>().HasData(user);
 
             return new List<ApplicationUser>()
             {
-                users.Item1,
-                users.Item2,
+                user,
             };
         }
     }

@@ -1,29 +1,33 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { map, take } from 'rxjs/operators';
+import { timer } from 'rxjs/internal/observable/timer';
+import { map, switchMap, take } from 'rxjs/operators';
 import { PhoneValidationService } from './../services/shared/phone-validation.service';
 
 @Injectable()
-export class PhoneNumberValidatior {
+export class PhoneNumberValidator {
 
-    constructor(
-        private phoneValidation: PhoneValidationService
-    ) {
 
-    }
+    static isValidPhoneNumber(service: PhoneValidationService) {
 
-    isValidPhoneNumber(control: AbstractControl) {
-        const phoneNumber = control.value;
+        return (control: AbstractControl) => {
+            const phoneNumber = control.value;
 
-        return this.phoneValidation.validateNumber(phoneNumber)
-            .pipe(
-                take(1),
-                map(res => res.valid)
-            )
-            .subscribe(result => {
-                if (!result) {
-                    control.setErrors({ phoneInvalid: true })
-                }
-            });
+            return timer(500).pipe(switchMap(_ =>
+                service.validateNumber(phoneNumber)
+                    .pipe(
+                        take(1),
+                        map(res => res.valid),
+                        map(result => {
+
+                            if (!result) {
+                                return { phoneInvalid: true }
+                            }
+
+                            return null;
+                        })
+                    )
+            ))
+        }
     }
 }

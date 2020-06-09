@@ -94,7 +94,6 @@ namespace Backend.Persistence.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     NotificationType = table.Column<string>(nullable: false),
                     ReceiveNotification = table.Column<bool>(nullable: false, defaultValue: true),
-                    ReceiveMail = table.Column<bool>(nullable: false, defaultValue: true),
                     UserSettingId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -113,7 +112,6 @@ namespace Backend.Persistence.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    CustomerId = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Username = table.Column<string>(nullable: true),
@@ -125,7 +123,6 @@ namespace Backend.Persistence.Migrations
                     LastModified = table.Column<DateTime>(nullable: false, defaultValueSql: "NOW()"),
                     Active = table.Column<bool>(nullable: false, defaultValue: true),
                     AccountType = table.Column<string>(nullable: false),
-                    TrialDuration = table.Column<int>(nullable: false, defaultValue: 15),
                     UserSettingId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -196,6 +193,25 @@ namespace Backend.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "UserSettings",
+                columns: new[] { "Id", "ApplicationUserId" },
+                values: new object[] { new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583"), new Guid("8d399c00-5654-4a54-9c2c-b44a485c3583") });
+
+            migrationBuilder.InsertData(
+                table: "NotificationSetting",
+                columns: new[] { "Id", "NotificationType", "UserSettingId" },
+                values: new object[,]
+                {
+                    { new Guid("71691ddc-039f-4606-b614-ff4a19516c00"), "MediaAdded", new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583") },
+                    { new Guid("71691ddc-039f-4606-b614-ff4a19516c01"), "ContactChanged", new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "AccountType", "Avatar", "CreatedOn", "Email", "FirstName", "LastName", "PasswordHash", "UserSettingId", "Username" },
+                values: new object[] { new Guid("8d399c00-5654-4a54-9c2c-b44a485c3583"), "User", "https://ui-avatars.com/api/?name=Firstname+Lastname&rounded=True&background=E46A3C&color=ffffff&", new DateTime(2020, 6, 9, 17, 50, 56, 386, DateTimeKind.Utc).AddTicks(991), "user@application.com", "Firstname", "Lastname", "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb", new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583"), "user" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Audits_PrimaryKey",

@@ -4,7 +4,6 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import * as moment from 'moment';
 import { Observable, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ConfirmDialogComponent } from 'src/app/shared/dialogs/confirm-dialog/confirm-dialog.component';
@@ -157,45 +156,4 @@ export class UIService {
 
     // #endregion
 
-    // #region ================ CUSTOM POPUP MESSAGES ================
-
-    public showSubscriptioninfoDialogOnLogin(isTrialing: boolean, isSubscribed: boolean, trialDaysRemaining: number) {
-
-        let message: string;
-        let action: Function;
-        let allowConfirm: boolean = true;
-        let showSplashDialog = this.showSplashDialog;
-
-        if (isTrialing && showSplashDialog) {  // TRIALING
-            message = "Custom trial message - TODO"; //TODO
-            action = this.setSplashDialogDate; // set splash dialog date
-        }
-        else if (!isTrialing && !isSubscribed) {  // MUST SUBSCRIBE
-            message = "Trial is over"; //TODO: Translate or whatever
-            action = () => { };
-            allowConfirm = false;
-            showSplashDialog = true; // must show dialog for this
-        }
-
-        const config = new ConfirmDialogConfig({
-            message,
-            action,
-            allowConfirm,
-            allowCancel: false,
-            confirmLabel: 'I understand'
-        });
-
-        showSplashDialog && message && this.openConfirmDialog(config);
-    }
-
-    private setSplashDialogDate() {
-        localStorage.setItem('splashDialogDate', moment(new Date()).utc().format('L'));
-    }
-
-    private get showSplashDialog(): boolean {
-        const date = localStorage.getItem('splashDialogDate');
-        return !date || date != moment(new Date()).utc().format('L');
-    }
-
-    // #endregion
 }

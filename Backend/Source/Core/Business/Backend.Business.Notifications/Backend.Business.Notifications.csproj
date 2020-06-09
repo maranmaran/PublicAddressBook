@@ -9,7 +9,6 @@
     <ProjectReference Include="..\..\Backend.Infrastructure\Backend.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Libraries\Backend.Library.AmazonS3\Backend.Library.AmazonS3.csproj" />
     <ProjectReference Include="..\..\Libraries\Backend.Library.Logging\Backend.Library.Logging.csproj" />
-    <ProjectReference Include="..\Backend.Business.Email\Backend.Business.Email.csproj" />
   </ItemGroup>
 
 </Project>

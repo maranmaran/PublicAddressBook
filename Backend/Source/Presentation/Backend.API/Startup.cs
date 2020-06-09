@@ -1,20 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Backend.API.Extensions;
 using Backend.API.Middleware;
 using Backend.Business.Notifications.NotificationRequests;
 using Backend.Library.Logging.Extensions;
-using Backend.Persistence;
 using Backend.Persistence.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Stripe;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Backend.API
@@ -102,7 +95,7 @@ namespace Backend.API
             });
 
             // ===== Payment api configuration - Stripe.com =====
-            StripeConfiguration.ApiKey = Configuration["StripeSettings:SecretKey"];
+            //StripeConfiguration.ApiKey = Configuration["StripeSettings:SecretKey"];
 
             // ===== Global error handling middleware with logging =====
             app.UseMiddleware<GlobalExceptionMiddleware>();

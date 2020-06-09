@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200609150045_Seed")]
-    partial class Seed
+    [Migration("20200609175056_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -240,9 +240,6 @@ namespace Backend.Persistence.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("NOW()");
 
-                    b.Property<string>("CustomerId")
-                        .HasColumnType("text");
-
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
@@ -266,11 +263,6 @@ namespace Backend.Persistence.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
 
-                    b.Property<int>("TrialDuration")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasDefaultValue(15);
-
                     b.Property<Guid>("UserSettingId")
                         .HasColumnType("uuid");
 
@@ -292,15 +284,13 @@ namespace Backend.Persistence.Migrations
                             Id = new Guid("8d399c00-5654-4a54-9c2c-b44a485c3583"),
                             AccountType = "Admin",
                             Active = false,
-                            CreatedOn = new DateTime(2020, 6, 9, 15, 0, 44, 442, DateTimeKind.Utc).AddTicks(5665),
-                            CustomerId = "cus_FHk5RepADdfm5H",
+                            CreatedOn = new DateTime(2020, 6, 9, 17, 50, 56, 386, DateTimeKind.Utc).AddTicks(991),
                             Email = "user@application.com",
                             FirstName = "Firstname",
                             Gender = "Male",
-                            LastModified = new DateTime(2020, 6, 9, 15, 0, 44, 442, DateTimeKind.Utc).AddTicks(5676),
+                            LastModified = new DateTime(2020, 6, 9, 17, 50, 56, 386, DateTimeKind.Utc).AddTicks(1349),
                             LastName = "Lastname",
                             PasswordHash = "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb",
-                            TrialDuration = 0,
                             UserSettingId = new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583"),
                             Username = "user"
                         });
@@ -315,11 +305,6 @@ namespace Backend.Persistence.Migrations
                     b.Property<string>("NotificationType")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<bool>("ReceiveMail")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(true);
 
                     b.Property<bool>("ReceiveNotification")
                         .ValueGeneratedOnAdd()
@@ -340,31 +325,13 @@ namespace Backend.Persistence.Migrations
                         {
                             Id = new Guid("71691ddc-039f-4606-b614-ff4a19516c00"),
                             NotificationType = "MediaAdded",
-                            ReceiveMail = false,
-                            ReceiveNotification = false,
-                            UserSettingId = new Guid("0d528a91-fbbe-4a02-924a-792344bbbd65")
-                        },
-                        new
-                        {
-                            Id = new Guid("71691ddc-039f-4606-b614-ff4a19516c01"),
-                            NotificationType = "ContactChanged",
-                            ReceiveMail = false,
-                            ReceiveNotification = false,
-                            UserSettingId = new Guid("0d528a91-fbbe-4a02-924a-792344bbbd65")
-                        },
-                        new
-                        {
-                            Id = new Guid("71691ddc-039f-4606-b614-ff4a19516c10"),
-                            NotificationType = "MediaAdded",
-                            ReceiveMail = false,
                             ReceiveNotification = false,
                             UserSettingId = new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583")
                         },
                         new
                         {
-                            Id = new Guid("71691ddc-039f-4606-b614-ff4a19516c11"),
+                            Id = new Guid("71691ddc-039f-4606-b614-ff4a19516c01"),
                             NotificationType = "ContactChanged",
-                            ReceiveMail = false,
                             ReceiveNotification = false,
                             UserSettingId = new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583")
                         });
@@ -400,41 +367,9 @@ namespace Backend.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("0d528a91-fbbe-4a02-924a-792344bbbd65"),
-                            ApplicationUserId = new Guid("0faee6ac-1772-4bbe-9990-a7d9a22dd529"),
-                            Theme = "Light"
-                        },
-                        new
-                        {
                             Id = new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583"),
                             ApplicationUserId = new Guid("8d399c00-5654-4a54-9c2c-b44a485c3583"),
                             Theme = "Light"
-                        });
-                });
-
-            modelBuilder.Entity("Backend.Domain.Entities.User.Admin", b =>
-                {
-                    b.HasBaseType("Backend.Domain.Entities.User.ApplicationUser");
-
-                    b.HasDiscriminator().HasValue("Admin");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("0faee6ac-1772-4bbe-9990-a7d9a22dd529"),
-                            AccountType = "Admin",
-                            Active = false,
-                            CreatedOn = new DateTime(2020, 6, 9, 15, 0, 44, 442, DateTimeKind.Utc).AddTicks(3848),
-                            CustomerId = "cus_FLi7gZv8w0j0GB",
-                            Email = "admin@trainingcompanion.com",
-                            FirstName = "Admin",
-                            Gender = "Male",
-                            LastModified = new DateTime(2020, 6, 9, 15, 0, 44, 442, DateTimeKind.Utc).AddTicks(4225),
-                            LastName = "",
-                            PasswordHash = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
-                            TrialDuration = 0,
-                            UserSettingId = new Guid("0d528a91-fbbe-4a02-924a-792344bbbd65"),
-                            Username = "admin"
                         });
                 });
 

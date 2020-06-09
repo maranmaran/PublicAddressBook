@@ -1,3 +1,4 @@
 export enum NotificationTypeLabel {
-    ContactChanged = 'CONTACT.CONTACT_CHANGED_LABEL',
+    ContactChanged = 'NOTIFICATIONS.CONTACT_CHANGED',
+    MediaAdded = 'NOTIFICATIONS.MEDIA_ADDED',
 }

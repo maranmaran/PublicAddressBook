@@ -1,9 +1,7 @@
 ﻿using Backend.Business.Notifications;
 using Backend.Business.Notifications.NotificationRequests.CreatePushNotification;
-using Backend.Business.Notifications.NotificationRequests.NotifyUser;
 using Backend.Domain.Entities.Auditing;
-using Backend.Domain.Entities.Media;
-using Backend.Domain.Entities.User;
+using Backend.Domain.Entities.Contacts;
 using Backend.Infrastructure.Exceptions;
 using Backend.Infrastructure.Interfaces;
 using Backend.Library.Logging.Interfaces;
@@ -12,6 +10,7 @@ using Moq;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Backend.Business.Notifications.NotificationRequests.NotifyAllClients;
 using Xunit;
 
 namespace Backend.BusinessTests.Notification
@@ -19,7 +18,7 @@ namespace Backend.BusinessTests.Notification
     public class NotificationAuditPusherTests
     {
         [Fact]
-        public async Task PushToUser_Valid_Pushes()
+        public async Task PushToClients_Valid_Pushes()
         {
             var mediatorMock = new Mock<IMediator>();
             var logMock = new Mock<ILoggingService>();
@@ -36,34 +35,27 @@ namespace Backend.BusinessTests.Notification
             var audit = new AuditRecord()
             {
                 UserId = Guid.Parse("23222299-096d-4fd4-8e19-ebc67ff03b44"),
-                EntityType = nameof(MediaFile)
+                EntityType = nameof(Contact)
             };
 
-            var user = new ApplicationUser()
-            {
-                Id = Guid.Parse("23222299-096d-4fd4-8e19-ebc67ff03b44"),
-            };
-
-            await service.PushToUser(audit, user);
+            await service.PushToAllClients(audit);
 
             var expectedCreateNotificationRequest = new CreateNotificationRequest()
             {
-                SenderId = Guid.Parse("23222299-096d-4fd4-8e19-ebc67ff03b44"),
-                ReceiverId = Guid.Parse("23222299-096d-4fd4-8e19-ebc67ff03b44"),
                 JsonEntity = "entity",
                 Type = NotificationHelper.GetNotificationType(audit.EntityType)
             };
 
             mediatorMock.Verify(x => x.Send(It.Is<CreateNotificationRequest>(val => RequestMatches(val, expectedCreateNotificationRequest)), CancellationToken.None), Times.Once);
-            mediatorMock.Verify(x => x.Publish(It.IsAny<NotifyUserNotification>(), CancellationToken.None), Times.Once);
+            mediatorMock.Verify(x => x.Publish(It.IsAny<NotifyAllClientsNotification>(), CancellationToken.None), Times.Once);
             activityMock.Verify(x => x.GetEntityAsJson(audit), Times.Once);
         }
 
         [Fact]
-        public async Task PushToUser_Fails_LogWarning()
+        public async Task PushToClients_Fails_LogWarning()
         {
             var mediatorMock = new Mock<IMediator>();
-            mediatorMock.Setup(x => x.Publish(It.IsAny<NotifyUserNotification>(), CancellationToken.None))
+            mediatorMock.Setup(x => x.Publish(It.IsAny<NotifyAllClientsNotification>(), CancellationToken.None))
                 .ThrowsAsync(new Exception());
 
             var logMock = new Mock<ILoggingService>();
@@ -80,15 +72,11 @@ namespace Backend.BusinessTests.Notification
             var audit = new AuditRecord()
             {
                 UserId = Guid.Parse("23222299-096d-4fd4-8e19-ebc67ff03b44"),
-                EntityType = nameof(MediaFile)
+                EntityType = nameof(Contact)
             };
 
-            var user = new ApplicationUser()
-            {
-                Id = Guid.Parse("23222299-096d-4fd4-8e19-ebc67ff03b44"),
-            };
 
-            await service.PushToUser(audit, user);
+            await service.PushToAllClients(audit);
 
             logMock.Verify(x => x.LogWarning(It.IsAny<Exception>(), It.IsAny<string>()), Times.Once);
         }
@@ -106,7 +94,7 @@ namespace Backend.BusinessTests.Notification
             serviceProviderMock.Setup(x => x.GetService(typeof(IActivityService))).Returns(activityMock.Object);
 
             var service = new NotificationsAuditPusher(serviceProviderMock.Object);
-            await Assert.ThrowsAsync<CreateFailureException>(() => service.GetNotification(It.IsAny<AuditRecord>(), It.IsAny<ApplicationUser>()));
+            await Assert.ThrowsAsync<CreateFailureException>(() => service.GetNotification(It.IsAny<AuditRecord>()));
         }
 
         private bool RequestMatches(CreateNotificationRequest expected, CreateNotificationRequest actual)

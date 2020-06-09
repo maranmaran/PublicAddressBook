@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Backend.Business.Notifications.NotificationRequests.CreatePushNotification;
-using Backend.Business.Notifications.NotificationRequests.SendPushNotification;
 using Backend.Domain;
 using Backend.Domain.Entities.User;
 using Backend.Domain.Enum;
@@ -24,7 +23,6 @@ namespace Backend.BusinessTests.Notification
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<CreateNotificationRequest, Domain.Entities.Notification.Notification>();
-                cfg.CreateMap<SendNotificationRequest, CreateNotificationRequest>();
                 cfg.CreateMap<Domain.Entities.Notification.Notification, Domain.Entities.Notification.Notification>().IgnoreAllVirtual();
             });
             _mapper = config.CreateMapper();
