@@ -1,0 +1,61 @@
+<div id="general-settings-container" fxLayout="row" fxLayoutAlign="space-evenly" fxLayout.lt-sm="column"
+    fxLayoutAlign.lt-sm="space-around" fxLayoutGap.lt-sm="1rem">
+    <div id="left-column" fxLayout="column" fxLayoutGap="1rem" fxFlex="0 0 50%" fxFlex.lt-sm="0 1 auto">
+
+        <!--Language-->
+        <div fxLayout="row" fxLayoutGap="1rem">
+            <mat-form-field class="language-dropdown">
+                <mat-label>{{ 'SETTINGS.GENERAL.LANGUAGE' | translate }}</mat-label>
+                <mat-select [formControl]="language">
+                    <mat-select-trigger>
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1rem">
+                            <img class="flag mat-elevation-z3" src="{{selectedCountryLanguageFlag}}" height="25" />
+                            <div> {{ supportedLanguages[language.value] | translate }} </div>
+                        </div>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let country of (supportedCountryLanguages | async)"
+                        [value]="country.languages[0].iso639_1">
+                        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1rem">
+                            <img class="flag mat-elevation-z3" src="{{country.flag}}" height="25" />
+                            <div> {{ supportedLanguages[country.languages[0].iso639_1] | translate }} </div>
+                        </div>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!--THEME-->
+        <div fxLayout="row" fxLayoutGap="1rem">
+            <label>{{ 'SETTINGS.GENERAL.THEME' | translate }}: </label>
+            <mat-slide-toggle [color]="'accent'" [checked]="themeButtonChecked" (change)="onThemeChange($event)">
+                {{ userSetting.theme }}
+            </mat-slide-toggle>
+        </div>
+
+    </div>
+    <div id="right-column" fxLayout="column" fxLayoutGap="1rem" fxFlex="0 0 50%" fxFlex.lt-sm="0 1 auto">
+        <!--Notification settings-->
+        <table>
+            <th>{{ 'SETTINGS.GENERAL.INFORM_ME' | translate }}</th>
+            <th>{{ 'SHARED.EMAIL' | translate }}</th>
+            <th>{{ 'SHARED.NOTIFICATION' | translate }}</th>
+
+            <tr *ngFor="let notificationSetting of userSetting.notificationSettings">
+                <!-- TODO: Make this pascal case into something meaningful... -->
+                <td class="text-center"> {{ notificationTypeLabels[notificationSetting.notificationType] | translate}}
+                </td>
+                <td class="text-center">
+                    <mat-checkbox (change)="onNotificationSettingCheckboxChecked($event, notificationSetting)"
+                        [name]="'receiveMail'" [checked]="notificationSetting.receiveMail">
+                    </mat-checkbox>
+                </td>
+                <td class="text-center">
+                    <mat-checkbox (change)="onNotificationSettingCheckboxChecked($event, notificationSetting)"
+                        [name]="'receiveNotification'" [checked]="notificationSetting.receiveNotification">
+                    </mat-checkbox>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</div>

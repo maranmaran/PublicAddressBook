@@ -1,0 +1,44 @@
+@import "~@angular/material/theming";
+
+// :host {
+//     position: sticky;
+//     position: -webkit-sticky; /* For macOS/iOS Safari */
+//     top: 0; /* Sets the sticky toolbar to be on top */
+//     z-index: 1000; /* Ensure that your app's content doesn't overlap the toolbar */
+// }
+
+#toolbar-row {
+  width: 100%;
+}
+
+.toolbar-title {
+  margin: 0;
+  margin-left: 1rem;
+  padding: 0;
+  cursor: default;
+}
+
+ngx-avatar {
+  cursor: pointer;
+}
+
+#settings {
+  margin-right: 0.5rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+#avatar-actions-row {
+  margin-top: 1.5rem;
+}
+
+#content-avatar {
+  cursor: default;
+  pointer-events: none;
+}
+
+.loading-bar {
+  height: 3px;
+  position: absolute;
+  z-index: 1000;
+}

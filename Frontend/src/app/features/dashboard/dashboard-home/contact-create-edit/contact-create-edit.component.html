@@ -1,0 +1,75 @@
+<h2> {{ data.title | translate }} </h2>
+
+<mat-divider class="dialog-form-divider"></mat-divider>
+
+<div class="form" fxLayout="column">
+    <form [formGroup]="form">
+
+        <mat-form-field>
+            <input matInput formControlName="name" placeholder="{{ 'CONTACT.NAME' | translate}}">
+            <mat-error *ngIf="name.invalid">
+                <div *ngFor="let err of getErrorMessages('name')">
+                    {{ err | translate }}
+                </div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput formControlName="address" placeholder="{{ 'CONTACT.ADDRESS' | translate}}">
+            <mat-error *ngIf="address.invalid">
+                <div *ngFor="let err of getErrorMessages('address')">
+                    {{ err | translate }}
+                </div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-divider style="margin-bottom: 1rem"></mat-divider>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <h3>{{'CONTACT.PHONE_NUMBERS' | translate}}</h3>
+
+            <button mat-icon-button color="accent" (click)="addPhoneControl()">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+
+        <div *ngIf="!phoneNumbers?.controls?.length && phoneNumbers.controls.length == 0">
+            <i>{{'CONTACT.NO_PHONE_NUMBERS' | translate }}</i>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="space-between center"
+            *ngFor="let _ of phoneNumbers.controls; let i = index">
+
+            <mat-form-field>
+                <input matInput [formControl]="phoneNumbers.controls[i]"
+                    placeholder="{{ 'CONTACT.PHONE_NUMBER' | translate}}">
+                <!-- <mat-error *ngIf="username.invalid && username.errors">
+                    <div class="validation-error" *ngFor="let error of phoneNumberErrors">{{error}}</div>
+                </mat-error> -->
+            </mat-form-field>
+
+            <div id="actions" fxFlexLayout="column">
+                <button id="delete-contact-{{i}}" mat-icon-button
+                    matTooltip="{{'CONTACT.REMOVE_PHONE_NUMBER' | translate}}" [matTooltipPosition]="'right'"
+                    color="accent" (click)="removePhoneControl(i)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+
+        </div>
+
+
+    </form>
+</div>
+
+<mat-error *ngIf="globalErrors && globalErrors.length > 0">
+    <div *ngFor="let err of globalErrors">
+        {{ 'VALIDATION.' + err | translate }}
+    </div>
+</mat-error>
+
+<div class="mt-2 dialog-form-actions" fxLayout="row" fxLayoutAlign="space-between">
+    <button mat-button (click)="onClose()">{{ 'SHARED.CLOSE' | translate}}</button>
+    <button mat-stroked-button color="accent" (click)="onSubmit()"
+        [disabled]="!formValid()">{{ (data.action == 'Create' ? 'SHARED.ADD' : 'SHARED.SAVE') | translate }}</button>
+</div>

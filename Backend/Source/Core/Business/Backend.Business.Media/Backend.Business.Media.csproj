@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <LangVersion>latest</LangVersion>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Backend.Domain\Backend.Domain.csproj" />
+    <ProjectReference Include="..\..\Libraries\Backend.Library.AmazonS3\Backend.Library.AmazonS3.csproj" />
+    <ProjectReference Include="..\..\Backend.Infrastructure\Backend.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Libraries\Backend.Library.MediaCompression\Backend.Library.MediaCompression.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,326 @@
+{
+  "SHARED": {
+    "USERNAME": "Korisničko ime",
+    "EMAIL": "E-pošta",
+    "CLOSE": "Zatvori",
+    "SAVE": "Spremi",
+    "MALE": "Muško",
+    "FEMALE": "Žensko",
+    "FILTER": "Filtriraj",
+    "NOTIFICATION": "Obavijest",
+    "CANCEL": "Poništi",
+    "DELETE": "Izbriši",
+    "ACTIVE": "Aktivan",
+    "INACTIVE": "Neaktivan",
+    "ADD": "Dodaj",
+    "ORDER": "Redni broj",
+    "VALUE": "Vrijednost",
+    "CODE": "Jedinstveni kod",
+    "NAME": "Naziv",
+    "EDIT": "Uredi",
+    "DATE": "Datum",
+    "FROM": "Od",
+    "TO": "Do",
+    "SEARCH": "Traži",
+    "VIDEO_NOT_SUPPORTED": "Vaš preglednik ne podržava ovaj tip snimke",
+    "ACTIVATE": "Aktiviraj",
+    "DEACTIVATE": "Deaktiviraj"
+  },
+  "CONTACT": {
+    "PHONE_NUMBERS": "Telefonski brojevi",
+    "ADDRESS": "Adresa",
+    "ADD_CONTACT_TITLE": "Dodajte kontakt",
+    "UPDATE_CONTACT_TITLE": "Uredite kontakt ( {{name}} )",
+    "DELETE_TITLE": "Brisanje kontakta",
+    "FIRST_NAME": "Ime",
+    "MIDDLE_NAME": "Srednje ime",
+    "LAST_NAME": "Prezime"
+  },
+  "TABLE": {
+    "NO_DATA": "Nema podataka"
+  },
+  "NOTIFICATIONS": {
+    "BODYWEIGHT_MESSAGE": "je dodao/la novi zapis tjelesne težine od {{value}}",
+    "MEDIA_MESSAGE": "je dodao/la novu multimedijsku datoteku",
+    "TRAINING_MESSAGE": "je dodao/la novi trening",
+    "PERSONAL_BEST_MESSAGE": "je napravio/la novi PR od {{value}}!",
+    "IMPORT_MESSAGE_SUCCESS": "Uvoz podataka je završio uspješno",
+    "IMPORT_MESSAGE_FAILURE": "Uvoz podataka nije uspio",
+    "NOTE_MESSAGE": "je dodao novu napomenu",
+    "NO_NOTIFICATIONS": "Nema više obavijesti za prikaz",
+    "SHOW_MORE": "Prikaži još obavijesti"
+  },
+  "TOOLBAR": {
+    "DASHBOARD_EDIT_LABEL": "Uredi kontrolnu ploču",
+    "CHAT": "Otvori razgovore na velikom zaslonu",
+    "SETTINGS_LABEL": "Postavke",
+    "PROFILE_LABEL": "Profil"
+  },
+  "DASHBOARD": {
+    "COULD_NOT_RENDER": "Graf se nije uspio pokazati",
+    "MISSING_EXERCISES": "Nema vježbi. Molim vas dodajte ili uvezite vježbu.",
+    "SAVE_DASHBOARD": "Spremi promjene",
+    "REMOVE_TRACK_ITEM": "Izbriši graf iz trake",
+    "MOVE_TRACK_ITEM": "Repozicioniraj graf",
+    "FEED": {
+      "MEDIA_MESSAGE": "<b>{{username}}</b> je dodao/la novu multimedijsku datoteku.",
+      "BODYWEIGHT_MESSAGE": "<b>{{username}}</b> je dodao/la novi zapis tjelesne težine od {{value}}.",
+      "TRAINING_MESSAGE": "<b>{{username}}</b> je dodao/la novi trening.",
+      "PERSONAL_BEST_MESSAGE": "<b>{{username}}</b> je napravio/la novi PR od {{value}}!"
+    },
+    "CARDS": {
+      "VOLUME_CARD": {
+        "EXERCISE_TYPE": "Vježba"
+      }
+    }
+  },
+  "CHAT": {
+    "FULLSCREEN": {
+      "TYPE_MESSAGE_LABEL": "Napiši poruku",
+      "PRESS_ENTER_SEND": "Stisni enter za poslatiStisni shift + enter za dodati novi redak poruke"
+    },
+    "SMALL": {
+      "TITLE_LABEL": "Prijatelji",
+      "MESSAGE_PLACEHOLDER": "Napiši poruku",
+      "SEARCH_PLACEHOLDER": "Traži",
+      "LOAD_HISTORY": "Učitaj starije poruke",
+      "LOADING_HISTORY": "Učitavanje...",
+      "STATUS": {
+        "ONLINE": "Na vezi",
+        "BUSY": "Zauzet",
+        "AWAY": "Udaljen",
+        "OFFLINE": "Nije na vezi"
+      }
+    }
+  },
+  "BODYWEIGHT": {
+    "BODYWEIGHT_LABEL": "Tjelesna težina",
+    "DELETE_TITLE": "Izbriši tjelesnu težinu",
+    "DELETE_DIALOG": "<p>Jeste li sigurni da želite izbrisati ovaj zapis težine {{bodyweight}} na datum {{date}}?</p>",
+    "DELETE_SELECTION_DIALOG": "<p>Jeste li sigurni da želite izbrisati svih({{length}}) označenih težina ?</p><p>Svi podaci će biti izgubljeni ako nastavite.</p>",
+    "ADD_TITLE": "Dodaj težinu",
+    "UPDATE_TITLE": "Uredi težinu",
+    "WEIGHT": "Težina"
+  },
+  "TRAINING_PROGRAM": {
+    "PROGRAM_BUILDER": "Planer",
+    "ASSIGNED_SUCCESS": "<b>{{program}}</b> je uspješno dodjeljen klijentu <b>{{athlete}}</b>.",
+    "ASSIGNED_SUCCESS_TITLE": "Dodjeljivanje programa je prošlo uspješno",
+    "ASSIGNED_FAIL": "<b>{{program}}</b> nije bio dodjeljen.",
+    "ASSIGNED_FAIL_TITLE": "Neuspjesno dodjeljivanje programa",
+    "DETAILS": {
+      "TITLE": "{{name}} detalji",
+      "DESCRIPTION": "Osnovni detalji o programu treninga",
+      "UNASSIGN_TITLE": "Zaustavi trening program",
+      "UNASSIGN_DIALOG": "<p>Jeste li sigurni da želite zaustaviti program <b>{{programName}}</b> za klijenta <b>{{name}}</b>.</p><p>Ako zaustavite program samo budućni treninzi koji nisu odrađeni će biti obrisani.</p><p>Podaci za treninge koji su do sada odrađeni će biti zadržani.</p>",
+      "UNASSIGN_BTN_LABEL": "Zaustavi",
+      "STARTED_ON": "Datum početka programa"
+    },
+    "USERS": {
+      "TITLE": "Dodjeljeni klijenti",
+      "DESCRIPTION": "Svi klijenti koji koriste trening program trenutno"
+    },
+    "METRICS": {
+      "TITLE": "Podaci",
+      "DESCRIPTION": "Volumen, intenzitet itd"
+    },
+    "SHOW_LESS": "Prikaži manje",
+    "SHOW_ALL": "Prikaži sve",
+    "ATHLETE": "Klijent",
+    "ASSIGN_BTN_LABEL": "Dodijeli",
+    "TAB_PROGRAMS": "Programi",
+    "TAB_BLOCKS": "Ciklusi",
+    "TAB_TRAININGS": "Treninzi",
+    "TAB_EXERCISES": "Vježbe",
+    "BLOCK_COUNT": "Broj ciklusa",
+    "NO_DESCRIPTION": "Nema opisa",
+    "ASSIGN": "Dodijeli program",
+    "DESCRIPTION_LABEL": "Opis",
+    "CHANGE_IMAGE": "Dodaj",
+    "NAME_LABEL": "Trening program",
+    "DELETE_TITLE": "Obriši trening program",
+    "DELETE_DIALOG": "<p>Jeste li sigurni da želite obrisati trening program {{trainingProgram}}?</p>",
+    "ADD_TITLE": "Dodaj trening program",
+    "UPDATE_TITLE": "Uredi trening program"
+  },
+  "TRAINING_BLOCK": {
+    "WEEKS": "{{number}} tjedana",
+    "DURATION": "Trajanje",
+    "DAYS": "{{ number }} dana",
+    "DESCRIPTION_LABEL": "Opis",
+    "NAME_LABEL": "Trening ciklus",
+    "DELETE_TITLE": "Obriši trening ciklus",
+    "DELETE_DIALOG": "<p>Jeste li sigurni da želite obrisati trening ciklus {{trainingBlock}}?</p>/n<p>Svi podaci za taj ciklus će biti izgubljeni</p>",
+    "ADD_TITLE": "Dodaj trening ciklus",
+    "UPDATE_TITLE": "Uredi trening ciklus"
+  },
+  "TRAINING_BLOCK_DAY": {
+    "DAYS_HEADER": "Dani u ciklusu",
+    "DAY_LABEL": "Dan",
+    "HAS_TRAINING": "Ima treninge",
+    "NAME_LABEL": "Dan u ciklusu",
+    "DELETE_TITLE": "Izbriši dan trening ciklusa",
+    "DELETE_DIALOG": "<p>Jeste li sigurni da zelite obrisati {{name}}?</p>/n<p>Svi podaci za treninge taj dan će biti izgubljeni</p>",
+    "ADD_TITLE": "Add training block day"
+  },
+  "EXPORT_IMPORT": {
+    "IMPORT_LABEL": "Uvoz podataka",
+    "LAST_IMPORT": "Zadnji uvoz podataka",
+    "SAMPLE_SHEETS": "Primjeri dokumenata za uvoz"
+  },
+  "TRAINING_LOG": {
+    "TRAINING_DELETE_DIALOG": "<p>Jeste li sigurni da želite obrisati trening na dan {{dateTrained}} ?</p><p>Svi podaci će biti izgubljeni ako obrišete ovaj trening.</p>",
+    "CALENDAR_LABEL": "Kalendar",
+    "WEEK_LABEL": "Tjedan",
+    "LIST_LABEL": "Lista",
+    "TRAINING_LABEL": "Trening",
+    "EXERCISE_LABEL": "Vježba",
+    "TOTAL_VOLUME": "Ukupan volumen",
+    "TOTAL_NOL": "Ukupan broj ponavljanja",
+    "NOTE_LABEL": "Napomena",
+    "NOTE_SEEN": "Trener je pregledao napomenu",
+    "COACH_NOTE": "Napomena od trenera",
+    "MEDIA": "Multimedija",
+    "TRAINING_DATE": "Datum treninga",
+    "ADD_TRAINING_TITLE": "Dodaj trening na {{date}}",
+    "SUMMARY_LABEL": "Pregled",
+    "COPY_LABEL": "Kopiraj",
+    "DELETE_LABEL": "Obriši",
+    "SET_WEIGHT": "Težina",
+    "SET_BODYWEIGHT": "Tjelesna težina",
+    "SET_REPS": "Ponavljanja",
+    "SET_TIME": "Vrijeme",
+    "SET_RPE": "RPE",
+    "SET_RIR": "RIR",
+    "SET_DELETE_TITLE": "Obriši set",
+    "SET_UPDATE_TITLE": "Uredi set",
+    "EXERCISE_DELETE_TITLE": "Obriši vježbu",
+    "EXERCISE_ADD_TITLE": "Dodaj vježbu",
+    "EXERCISE_DELETE_DIALOG": "<p>Jeste li sigurni da želite izbrisati {{name}} ?</p><p>Svi podaci će biti izgubljeni ako izbrišete ovu vježbu.</p>",
+    "EXERCISE_DELETE_SELECTION_DIALOG": "<p>Jeste li sigurni da želite izbrisati svih ({{length}}) označenih vježbi ?</p><p>Svi podaci će biti izgubljeni ako izbrišete ove vježbe.</p>",
+    "EXERCISE_VOLUME": "Volumen vježbe",
+    "PROJECTED_MAX": "Izračunati maksimum",
+    "EXERCISE_MEDIA": "Multimedija",
+    "SETS_LABEL": "Setovi",
+    "EXERCISE_TYPE_LABEL": "Vrsta vježbe",
+    "REMOVE_SET": "Obriši redak",
+    "COPY_DOWN": "Kopiraj dolje"
+  },
+  "EXERCISE_TYPES": {
+    "ADD_TYPE_LABEL": "Dodaj vježbu",
+    "UPDATE_TYPE_LABEL": "Uredi {{name}}",
+    "DELETE_TITLE": "Izbriši vježbu",
+    "BODYWEIGHT": "Koristi tjelesnu težinu",
+    "TIME": "Zahtjeva mjerenje vremena",
+    "REPS": "Koristi ponavljanja",
+    "SETS": "Koristi setove",
+    "WEIGHT": "Koristi utege",
+    "PROPS": "Oznake",
+    "BODYWEIGHT_ONLY": "Koristi samo tjelesnu težinu",
+    "MEASURE_TIME": "Zahtjeva mjerenje vremena",
+    "NO_PROPS": "Nema dodanih stavki od ove oznake",
+    "ADD_TAG": "Dodaj stavku",
+    "CODE": "Jedinstveni kod (Neobavezno)"
+  },
+  "TAGS": {
+    "TYPE": "Tip",
+    "ADD_TYPE": "Dodaj oznaku vježbe",
+    "UPDATE_TYPE": "Uredi  oznaku vježbe",
+    "DELETE_TYPE": "<p>Jeste li sigurni da želite izbrisati oznaku {{type}} ?</p><p>Svi podaci će biti izgubljeni ako obrišete ovu oznaku.</p>",
+    "DELETE_TYPE_SELECTION": "<p>Jeste li sigurni da želite izbrisati svih ({{length}}) oznaka ?</p><p>Svi podaci će biti izgubljeni ako obrišete ove oznake.</p>`;",
+    "DELETE_TYPE_TITLE": "Obriši oznaku",
+    "TAG": "Oznaka",
+    "EXERCISE_PROPERTY_TYPE": "Naziv oznake za vježbu",
+    "DESCRIPTION": "Opis",
+    "ADD_PROPERTY": "Dodaj stavku pod oznaku '{{groupName}}'",
+    "UPDATE_PROPERTY": "Uredi stavku pod oznakom '{{groupName}}'",
+    "DELETE_PROPERTY": "",
+    "DELETE_PROPERTY_SELECTION": "",
+    "DELETE_PROPERTY_TITLE": ""
+  },
+  "LANGUAGES": {
+    "ENGLISH": "Engleski",
+    "CROATIAN": "Hrvatski"
+  },
+  "SETTINGS": {
+    "SETTINGS_LABEL": "Postavke",
+    "GENERAL_LABEL": "Općenito",
+    "NEW_MEDIA": "Nova multimedija",
+    "GENERAL": {
+      "LANGUAGE": "Jezik",
+      "THEME": "Tema",
+      "UNIT_SYSTEM": "Mjerni sustav",
+      "RPE_SYSTEM": "RPE sistem",
+      "PERCENTAGE_SYSTEM": "Koristi postotke",
+      "INFORM_ME": "Obavijesti me o"
+    },
+    "ACCOUNT_LABEL": "Korisnički račun",
+    "ACCOUNT": {
+      "CHANGE_PASSWORD": "Promijeni lozinku",
+      "CHANGE_AVATAR": "Promijeni"
+    },
+    "BILLING_LABEL": "Plaćanje",
+    "BILLING": {
+      "STATUS": "Status",
+      "TRIAL_END": "Probni račun vrijedi do",
+      "CHANGE": "Promijeni",
+      "ACTIVE": "Aktivna pretplata",
+      "INCOMPLETE": "Nepotpuna pretplata",
+      "INCOMPLETE_EXPIRED": "Istekla pretplata",
+      "TRIALING": "Probni rok",
+      "PAST_DUE": "Istekao rok",
+      "CANCELED": "Otkazana pretplata",
+      "UNPAID": "Neplaćena pretplata",
+      "PAYMENT_INFO": "Informacije o plaćanju",
+      "NAME": "Ime i prezime",
+      "PHONE": "Telefon",
+      "COUNTRY": "Država",
+      "ADDRESS": "Adresa",
+      "CITY": "Grad",
+      "STATE": "Županija",
+      "GO_BACK": " Natrag",
+      "FINISH": "Završi"
+    }
+  },
+  "AVATAR_DIALOG": {
+    "HOMEPAGE": "Početna stranica",
+    "SIGN_OUT": "Odjava"
+  },
+  "MAIN_SIDEBAR": {
+    "MENU": "Meni",
+    "DASHBOARD": "Kontrolna ploča",
+    "MANAGE_USERS": "Klijenti",
+    "EXERCISE_LIBRARY": "Vježbe",
+    "EXERCISE_PROPERTIES": "Svojstva vježbi",
+    "EXERCISES": "Popis vježbi",
+    "TRAINING_LOG": "Dnevnik treninga",
+    "EXPORT_IMPORT": "Uvoz / izvoz podataka",
+    "BODYWEIGHT": "Tjelesna težina",
+    "TRAINING_PROGRAM": "Programi treninga"
+  },
+  "PAGINATOR": {
+    "ITEMS_PER_PAGE_LABEL": "Broj redaka",
+    "NEXT_PAGE_LABEL": "Sljedeća stranica",
+    "PREVIOUS_PAGE_LABEL": "Prijašnja stranica",
+    "FIRST_PAGE_LABEL": "Prva stranica",
+    "LAST_PAGE_LABEL": "Zadnja stranica",
+    "RANGE_PAGE_LABEL_1": "0 od {{length}}",
+    "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} od {{length}}"
+  },
+  "AUTHORIZATION": {
+    "WRONG_USERNAME_PASSWORD": "Krivo korisničko ime ili lozinka",
+    "FORGOT_PASSWORD": "Zaboravljena lozinka",
+    "SIGN_IN": "Prijava",
+    "PASSWORD": "Lozinka"
+  },
+  "ATHLETE_MANAGEMENT": {
+    "JOINED_ON": "Datum dolaska",
+    "ACC_STATUS": "Status računa",
+    "REGISTER": "Registriraj",
+    "ACTIVE": "Aktivan",
+    "INACTIVE": "Neaktivan",
+    "FULL_NAME": "Ime i prezime",
+    "ADD_TITLE": "Dodaj informacije o klijentu",
+    "UPDATE_TITLE": "Uredi detalje o klijentu"
+  }
+}

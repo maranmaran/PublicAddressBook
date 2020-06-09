@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+    <h2 class="toolbar-title float-left"> {{ 'MAIN_SIDEBAR.MENU' | translate}} </h2>
+
+    <button mat-icon-button color="accent" (click)="close()">
+      <i class="fas fa-times"></i>
+    </button>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-nav-list class="navlist" id="main-navlist">
+  <mat-accordion class="headers-align" [displayMode]="'flat'">
+
+    <!-- LIST OF NAVIGATION LINKS -->
+
+    <a mat-list-item (click)="onRoute('/app/dashboard')">
+      <i class="fas fa-home accent-foreground"></i>
+      <span class="label">{{ 'MAIN_SIDEBAR.DASHBOARD' | translate}}</span>
+    </a>
+
+  </mat-accordion>
+</mat-nav-list>

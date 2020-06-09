@@ -1,0 +1,68 @@
+<mat-sidenav-container class="settings-sidenav-container">
+
+    <mat-sidenav class="settings-sidenav">
+        <mat-toolbar>
+            <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
+                <h2 class="toolbar-title float-left"> {{ data.title | translate }} </h2>
+
+                <button mat-icon-button color="accent" (click)="toggleSidenav()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+
+        <mat-nav-list class="navlist">
+            <mat-accordion [displayMode]="'flat'">
+
+                <a mat-list-item (click)="openTab('General')">
+                    {{ 'SETTINGS.GENERAL_LABEL' | translate }}
+                </a>
+                <mat-divider></mat-divider>
+                <a mat-list-item (click)="openTab('Account')">
+                    {{ 'SETTINGS.ACCOUNT_LABEL' | translate }}
+                </a>
+                <mat-divider></mat-divider>
+                <a mat-list-item (click)="openTab('Billing')" *ngIf="(isCoach | async)">
+                    {{ 'SETTINGS.BILLING_LABEL' | translate }}
+                </a>
+
+            </mat-accordion>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="container" fxLayout="column">
+
+            <!-- menu button for settings sidenav -->
+            <div class="mb-3" fxLayout="row" fxLayoutAlign="space-between">
+                <button [fxShow]='!uiService.isSidenavOpened("Settings", true)' mat-icon-button color="accent"
+                    (click)="toggleSidenav()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <button mat-icon-button color="accent" (click)="onClose()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- settings content -->
+            <div [hidden]="(loading$ | async)" [ngSwitch]="activeTab">
+                <app-general *ngSwitchCase="'General'"></app-general>
+                <app-account *ngSwitchCase="'Account'"></app-account>
+                <app-billing *ngSwitchCase="'Billing'"></app-billing>
+            </div>
+
+            <!-- loader -->
+            <ng-container *ngIf="(loading$ | async)">
+                <div id="spinner-container" class="loading-spinner" fxLayout="column" fxLayoutAlign="center center">
+                    <mat-progress-spinner class="settings-spinner" [color]="'accent'" [mode]="'indeterminate'"
+                        [value]="50">
+                    </mat-progress-spinner>
+                </div>
+            </ng-container>
+
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,61 @@
+@import "~@angular/material/theming";
+
+@mixin table-component-theme($theme) {
+    $background-palette: map-get($theme, background);
+    $highlight: map-get($background-palette, hover);
+
+    .highlighted-row:not(.cdk-drag-preview) {
+        background-color: rgba($highlight, 0.1) !important;
+        cursor: pointer;
+    }
+
+    mat-row,
+    mat-header-row {
+        // min-height: 302px; // height of 5 rows
+
+        .mat-column-select {
+            max-width: -webkit-fit-content;
+            padding: 0 20px;
+        }
+
+        .mat-column-actions {
+            max-width: -webkit-fit-content;
+        }
+    }
+
+    .theme-material-table {
+        .highlighted-row:not(.cdk-drag-preview) {
+            background-color: rgba($highlight, 0.1) !important;
+        }
+        .selected-row {
+            background-color: rgba($highlight, 0.1) !important;
+        }
+
+        mat-row {
+            cursor: pointer;
+        }
+
+        mat-cell,
+        mat-header-cell {
+            mat-divider {
+                height: 30px;
+            }
+        }
+
+        .no-records {
+            padding: 1rem 0px;
+            text-align: center;
+            font-style: italic;
+        }
+    }
+
+    .material-table-menu.mat-menu-panel {
+        min-width: unset;
+        min-height: unset;
+
+        .mat-menu-content {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

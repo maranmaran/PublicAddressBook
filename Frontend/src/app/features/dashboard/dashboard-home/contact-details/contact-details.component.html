@@ -1,0 +1,42 @@
+<div class="details-container mat-elevation-z3" *ngIf="(contact$ | async) as contact">
+
+    <h1 class="details-header" fxLayout="row" fxLayoutAlign="space-between">
+        <span>{{ contact.name }}</span>
+    </h1>
+
+    <mat-divider></mat-divider>
+
+
+    <div class="details-body" fxLayout="row" fxLayoutGap="1rem" fxLayout.lt-sm="column">
+
+        <div class="details" fxFlexOrder.lt-sm="2" gdAreas="left-label left-value" gdColumns="max-content auto">
+
+            <div gdArea="left-label">
+                <div class="detail">
+                    <mat-label class="label">{{ 'CONTACT.ADDRESS' | translate}}:</mat-label>
+                </div>
+                <div class="detail">
+                    <mat-label class="label">{{ 'CONTACT.PHONE_NUMBERS' | translate}}:</mat-label>
+                </div>
+            </div>
+
+            <div gdArea="left-value">
+                <div class="detail">
+                    <span class="label-value">{{contact.address}}</span>
+                </div>
+                <div class="detail" *ngFor="let phoneNumberObj of contact.phoneNumbers">
+                    <span class="label-value">{{phoneNumberObj.number}}</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="avatar-container" fxFlexOrder.lt-sm="1" fxFlex="1 0 auto" fxFlex.lt-sm="0 0 100%"
+            fxFlexAlign="center">
+            <img class="img-fluid avatar-img" style="max-width: 10rem" src="{{contact.avatar}}" />
+        </div>
+
+    </div>
+
+    <div class="details-footer">
+    </div>

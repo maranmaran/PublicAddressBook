@@ -1,0 +1,55 @@
+:host {
+  height: 100%;
+}
+
+.sidenav {
+  width: 15rem;
+}
+
+.sidenav-container {
+  position: relative !important;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+// class from element that is being dragged
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+// .cdk-drag-placeholder {
+//   // opacity: 0.7;
+// }
+// .cdk-drag-animating {
+//   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }
+// .drop-list.cdk-drop-list-dragging .list-item:not(.cdk-drag-placeholder) {
+//   transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+// }
+
+.main-dashboard-container {
+  height: calc(100% - 16px);
+  margin-bottom: 1rem;
+}
+
+.tabs-active {
+  height: calc(100% - 150px) !important;
+}
+
+@media (max-width: 600px) {
+  .sidenav {
+    width: 70%;
+  }
+}
+
+@media (max-width: 1279px) {
+  // because of lt-lg in fxLayout
+  // .main-dashboard-container{
+  //   height: auto;
+  // }
+}

@@ -1,0 +1,95 @@
+// core theme
+@import "./application-content.theme.scss";
+
+.mat-tab-label-active {
+  opacity: 1 !important;
+}
+
+.multiline {
+  white-space: pre-line;
+}
+.settings-dialog-container .mat-dialog-container {
+  padding: 0px;
+  height: 30rem;
+  overflow-x: hidden;
+}
+.settings-dialog-container .mat-drawer-content {
+  overflow-x: hidden;
+}
+.media-dialog-container .mat-dialog-container {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.media-dialog-container .mat-dialog-content {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.dialog-form-divider {
+  margin-bottom: 1rem !important;
+  margin-left: -24px !important;
+  margin-right: -24px !important;
+}
+
+.dialog-form-actions {
+  margin-top: 2rem !important;
+}
+
+.dropdown-panel-class {
+  margin-top: 21px !important;
+  min-width: 100% !important;
+}
+
+.mat-sidenav-content {
+  display: block !important;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 56px !important; //constant height
+}
+
+.navlist {
+  padding-top: 0 !important;
+}
+
+mat-form-field {
+  // margin-bottom: 1rem;
+  width: 100%;
+}
+
+.cdk-column-actions {
+  padding-right: 0px !important;
+}
+
+// ==== MAT ERROR - SO IT DOESN'T OVERFLOW ====
+.mat-form-field-underline {
+  position: initial !important;
+}
+.mat-form-field-subscript-wrapper {
+  position: relative !important;
+}
+
+.mat-icon-button__small {
+  height: 20px !important;
+  width: 20px !important;
+  line-height: 20px !important;
+}
+
+// toolbar view-as feature
+#view-as {
+  max-width: 100%;
+  .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+    font-size: 15px !important;
+  }
+}
+@media (max-width: 600px) {
+  #view-as {
+    max-width: 135px;
+    .mat-form-field-wrapper {
+      font-size: 10px !important;
+    }
+  }
+}

@@ -1,0 +1,142 @@
+@import "~@angular/material/theming";
+@import "~ngx-toastr/toastr";
+
+@mixin notifications-theme($theme) {
+    $primary: mat-color(map-get($theme, primary));
+    $accent: mat-color(map-get($theme, accent));
+    $warn: mat-color(map-get($theme, warn));
+
+    $background-palette: map-get($theme, background);
+    $background-color: map-get($background-palette, background);
+    $border-color: map-get($background-palette, focused-button);
+    $color: map-get($background-palette, foreground);
+
+    $toast-color: mat-color(map-get($theme, primary), darker);
+
+    .toast-notification {
+        @extend .ngx-toastr;
+
+        background: darken($primary, 25%);
+        // background: darken($background-color, 10%);
+        color: $color !important;
+
+        border-radius: 10px !important;
+        border: 0.5px solid $border-color;
+
+        box-shadow: none;
+
+        &:hover {
+            box-shadow: 0 0 12px $border-color;
+            cursor: pointer;
+            /* background-color: rgba(0,0,0,0.1); */
+            opacity: 1;
+        }
+    }
+
+    .toast-default {
+        @extend .ngx-toastr;
+        background-color: darken($primary, 25%);
+        border-radius: 10px !important;
+        // // background: darken($background-color, 10%);
+        // color: $color !important;
+
+        // border-radius: 15px;
+        // border: 0.5px solid $border-color;
+
+        // box-shadow: none;
+
+        // &:hover {
+        //   box-shadow: 0 0 12px $border-color;
+        //   cursor: pointer;
+        //   /* background-color: rgba(0,0,0,0.1); */
+        //   opacity: 1;
+        // }
+    }
+
+    .notifications-menu-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &.mat-menu-panel {
+            min-width: 430px;
+            max-height: 575px; // this max-height and height 100% is because of no notifications label
+            height: 100%;
+            //height: 360px;
+        }
+
+        #no-notifications {
+            padding: 20px;
+            margin: 0px;
+        }
+
+        .mat-menu-content:not(:empty) {
+            padding: 0px;
+        }
+
+        .mat-menu-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            height: 100%;
+            width: 100%;
+
+            .virtual-scroll-item {
+                height: 100%;
+                height: 140px;
+                width: 100%;
+
+                .notification-container {
+                    height: 100%;
+                    padding: 10px;
+                    padding-right: 5px;
+
+                    &.unread {
+                        background-color: rgba(0, 0, 0, 0.4);
+                    }
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.1) !important;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .notification-body-container {
+        #payload {
+            font-size: 15px;
+        }
+
+        #metadata {
+            font-size: 10px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        // menu container
+        .notifications-menu-container {
+            &.mat-menu-panel {
+                min-width: 250px;
+                height: 375px;
+                margin-left: 5px;
+            }
+
+            .virtual-scroll-item {
+                height: 40px;
+            }
+        }
+
+        .notification-body-container {
+            #payload {
+                font-size: 12px;
+            }
+
+            #metadata {
+                font-size: 7px;
+            }
+        }
+    }
+}

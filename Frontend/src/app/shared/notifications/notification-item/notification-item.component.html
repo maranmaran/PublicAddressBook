@@ -1,0 +1,20 @@
+<div class="notification-container" fxLayout="row" fxLayoutGap="15px" [ngClass]="{'unread': !model.read}">
+
+    <div class="notification-body-container" fxLayout="column" fxFlex="1 1 100%">
+        <div id="payload" fxFlex="0 0 70%" fxLayout="row" fxLayoutGap="4px">
+            <ng-container [ngSwitch]="model.type">
+                <app-contact-body-template *ngSwitchCase="notificationType.ContactChanged" [notification]="model">
+                </app-contact-body-template>
+                <span *ngSwitchCaseDefault>{{ model.payload }}</span>
+            </ng-container>
+        </div>
+        <div id="metadata" fxFlex="0 0 30%" fxLayout="row" fxLayoutGap="0.5rem" fxLayoutAlign="start center">
+            <ng-container [ngSwitch]="model.type">
+                <i *ngSwitchCase="notificationType.ContactChanged" class="fas fa-users"></i>
+            </ng-container>
+
+            <span id="date">{{ model.sentAt | date:'medium' }}</span>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+@import "~@angular/material/theming";
+@include mat-core();
+
+// ====================== MIXINS ======================
+
+@import "./mixins/splash.scss";
+@import "./mixins/links.scss";
+@import "./mixins/sidenav.scss";
+@import "./mixins/colors.scss";
+@import "./mixins/scrollbar.scss";
+@import "./mixins/autofill.scss";
+@import "./mixins/notifications.scss";
+@import "./mixins/material-table.scss";
+@import "./mixins/details-view.scss";
+
+@mixin custom-components-theme($theme) {
+  @include splash-component-theme($theme);
+  @include links-component-theme($theme);
+  @include main-sidenav-component-theme($theme);
+  @include colors-theme($theme);
+  @include scrollbar-theme($theme);
+  @include autofill-theme($theme);
+  @include notifications-theme($theme);
+  @include table-component-theme($theme);
+  @include details-component-theme($theme);
+}
+
+// ====================== MAIN CORE THEMES ======================
+
+@import "./material/themes/theme-light.scss";
+
+.theme-light {
+  @include angular-material-theme($theme-light);
+  @include custom-components-theme($theme-light);
+}
+
+@import "./material/themes/theme-dark.scss";
+
+.theme-dark {
+  @include angular-material-theme($theme-dark);
+  @include custom-components-theme($theme-dark);
+}

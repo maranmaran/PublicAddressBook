@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.6.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Backend.Infrastructure\Backend.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Libraries\Backend.Library.AmazonS3\Backend.Library.AmazonS3.csproj" />
+    <ProjectReference Include="..\..\Libraries\Backend.Library.Logging\Backend.Library.Logging.csproj" />
+    <ProjectReference Include="..\..\Libraries\Backend.Library.Payment\Backend.Library.Payment.csproj" />
+    <ProjectReference Include="..\Backend.Business.Email\Backend.Business.Email.csproj" />
+    <ProjectReference Include="..\Backend.Business.Notifications\Backend.Business.Notifications.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,191 @@
+@import "./bootstrap/bootstrap.styles.scss";
+@import "./material/material.styles.scss";
+@import "./mobile.scss";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.vertical-scroll {
+  overflow-y: auto;
+}
+
+.body-container {
+  margin: 8px;
+}
+
+.h-100vh {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.w-100vh {
+  width: 100vh;
+  min-width: 100vh;
+}
+
+// .mat-drawer-content {
+.main-sidenav-content {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+  overflow-x: unset !important;
+  // overflow-y: auto !important;
+  overflow-y: unset !important;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.invisible-overflow-y {
+  overflow-y: auto !important;
+
+  &::-webkit-scrollbar {
+    width: 0px; /* Remove scrollbar space */
+    background: transparent; /* Optional: just make scrollbar invisible */
+  }
+}
+
+.transparent {
+  background: transparent;
+}
+
+.main-router-outlet + * {
+  overflow-y: auto;
+  height: 100%;
+}
+
+// to center items in dashboard sidebar
+// because angular cdk drag drop has some issues with flexbox
+// when i drag item to track and the item goes back to sidebar
+// flexbox resets unexpectedly
+.additional-padding {
+  padding-left: 27%;
+  padding-bottom: 1rem;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.cursor-move {
+  cursor: move;
+}
+
+i {
+  cursor: pointer;
+}
+
+.visible {
+  visibility: visible !important;
+}
+.not-visible {
+  visibility: hidden !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+.no-margin {
+  margin: 0 !important;
+}
+
+.center-margin {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.main-screen {
+  padding-top: 1rem;
+}
+
+.active {
+  color: greenyellow;
+}
+
+.not-active {
+  color: crimson;
+}
+
+.fa-1-2x {
+  font-size: 1.2em;
+}
+.fa-1-3-5x {
+  font-size: 1.35em;
+}
+.fa-1-5x {
+  font-size: 1.5em;
+}
+.fa-1-7-5x {
+  font-size: 1.75em;
+}
+.fa-2-3x {
+  font-size: 2.3em;
+}
+.fa-5x {
+  font-size: 5rem;
+}
+
+.row-center {
+  align-self: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.avatar-img {
+  border-radius: 50%;
+}
+
+button {
+  cursor: pointer;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.no-pointer-events {
+  pointer-events: none;
+}
+
+.pointer-events {
+  pointer-events: auto;
+}
+
+// this is for hammer js swiping
+// mostly issue with media-carousel
+img {
+  pointer-events: none;
+}

@@ -1,0 +1,177 @@
+<!--CONTAINER-->
+<div class="theme-material-table">
+
+  <!--FILTER-->
+  <mat-form-field *ngIf="config.filterEnabled">
+    <input matInput #filter (keyup)="applyFilterEvent.next($event.target.value)"
+      placeholder="{{ 'SHARED.FILTER' | translate }}">
+  </mat-form-field>
+
+  <!--TABLE-->
+  <mat-table class="mat-elevation-z1" [dataSource]="datasource" matSort
+    (matSortChange)="config.pagingOptions.serverSidePaging && onSortChange($event)" cdkDropList
+    [cdkDropListData]="datasource.data" [cdkDropListDisabled]="!config.enableDragAndDrop"
+    (cdkDropListDropped)="onListDrop($event)" [multiTemplateDataRows]="config.usesExpandableRows">
+
+    <!-- SELECTION ( CHECKBOXES ) COLUMN -->
+    <ng-container matColumnDef="select" *ngIf="config.selectionEnabled">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected"
+          [indeterminate]="selection.hasValue() && !isAllSelected">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row.id) : null"
+          [checked]="selection.isSelected(row.id)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- ACTUAL DATA COLUMNS-->
+    <ng-container *ngFor="let col of columns" matColumnDef="{{ col.definition }}">
+
+      <ng-container *ngIf="col.sort">
+        <mat-header-cell class="{{col.headerClass}}" *matHeaderCellDef mat-sort-header matTooltip="{{col.tooltip}}">
+          {{ col.title | translate }} </mat-header-cell>
+      </ng-container>
+
+      <ng-container *ngIf="!col.sort">
+        <mat-header-cell class="{{col.headerClass}}" *matHeaderCellDef matTooltip="{{col.tooltip}}">
+          {{ col.title | translate }}
+        </mat-header-cell>
+      </ng-container>
+
+      <mat-cell class="{{col.cellClass}}" *matCellDef="let row">
+        <div *ngIf="!col.useComponent" [innerHtml]="(col.displayFn(row) | sanitizeHtml)"></div>
+        <ndc-dynamic *ngIf="col.useComponent" [ndcDynamicComponent]="col.component"
+          [ndcDynamicInputs]="col.componentInputs(row)"></ndc-dynamic>
+      </mat-cell>
+
+    </ng-container>
+
+    <!-- ACTIONS COLUMN -->
+    <ng-container matColumnDef="actions" *ngIf="config.actionsEnabled">
+      <!--HEADER ACTIONS-->
+      <mat-header-cell *matHeaderCellDef>
+
+        <!--Header actions menu button-->
+        <button matTooltip="Actions"
+          *ngIf="config.headerActions.length > 1 && isMoreThanOneSelected; else singleHeaderAction" mat-icon-button
+          color="accent" [matMenuTriggerFor]="headerMenu">
+          <i class="fa fa-ellipsis-v"></i>
+        </button>
+        <ng-template #singleHeaderAction>
+          <ng-container *ngTemplateOutlet="actions; context: { actions: config.headerActions}"></ng-container>
+        </ng-template>
+
+        <mat-menu class="material-table-menu" #headerMenu="matMenu">
+          <ng-container *ngTemplateOutlet="actions; context: { actions: config.headerActions}"></ng-container>
+        </mat-menu>
+
+      </mat-header-cell>
+      <!--CELL ACTIONS-->
+      <mat-cell *matCellDef="let row">
+
+        <!--Cell actions menu button-->
+        <button matTooltip="Actions" *ngIf="config.cellActions.length > 1; else singleCellAction" mat-icon-button
+          color="accent" [matMenuTriggerFor]="cellMenu" (click)="$event.stopPropagation()">
+          <i class="fa fa-ellipsis-v"></i>
+        </button>
+        <ng-template #singleCellAction>
+          <ng-container *ngTemplateOutlet="actions; context: { actions: config.cellActions, row: row}"></ng-container>
+        </ng-template>
+
+        <mat-menu class="material-table-menu" #cellMenu="matMenu">
+          <ng-container *ngTemplateOutlet="actions; context: { actions: config.cellActions, row: row}"></ng-container>
+        </mat-menu>
+
+      </mat-cell>
+    </ng-container>
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+    <ng-container *ngIf="config.usesExpandableRows" matColumnDef="expandedDetail">
+      <mat-cell *matCellDef="let detail" [attr.colspan]="displayColumns.length">
+
+        <!-- <mat-progress-spinner [color]="'accent'" [mode]="'indeterminate'" [value]="30"></mat-progress-spinner> -->
+
+        <ng-container>
+          <ndc-dynamic [ndcDynamicComponent]="config.expandableRowComponent"
+            [ndcDynamicInputs]="config.expandableRowComponentInputs(detail)"
+            [ndcDynamicAttributes]="config.expandableRowComponentAttributes"></ndc-dynamic>
+        </ng-container>
+
+      </mat-cell>
+    </ng-container>
+
+    <!--HEADER AND ROW-->
+    <mat-header-row *matHeaderRowDef="displayColumns"></mat-header-row>
+    <mat-row id="table-row" *matRowDef="let row; columns: displayColumns;" cdkDrag [cdkDragData]="row"
+      [cdkDragStartDelay]="300" (cdkDragStarted)="onDragStarted()" (cdkDragEnded)="onDragEnded()" highlightOnHover
+      class="theme-dialog element-row" [ngClass]="{'selected-row': selection.isSelected(row.id)}"
+      (click)="onSelect(row);">
+    </mat-row>
+
+    <!--EXPANDABLE ROW-->
+    <ng-container *ngIf="config.usesExpandableRows">
+      <mat-row *matRowDef="let row; columns: ['expandedDetail']"
+        [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'" class="expandable-row">
+      </mat-row>
+    </ng-container>
+
+  </mat-table>
+
+  <!-- NO DATA -->
+  <div class="no-records" *ngIf="datasourceEmpty">
+    <span>{{'TABLE.NO_DATA' | translate}}</span>
+  </div>
+
+  <!-- PAGINATOR -->
+  <mat-paginator [hidden]="paginatorHidden" showFirstLastButtons
+    (page)="config.pagingOptions.serverSidePaging && onPageChange($event)" [pageSize]="pageSize"
+    [length]="(totalItems | async)" [pageSizeOptions]="pageSizeOptions">
+  </mat-paginator>
+
+</div>
+
+<!--ACTION BUTTONS-->
+<ng-template #actions let-actions="actions" let-row="row">
+  <ng-container *ngFor="let action of actions">
+    <!--ADD ACTION-->
+    <button *ngIf="action == 'create'" matTooltip="Add item" mat-icon-button color="accent" (click)="addEvent.emit()"
+      (click)="$event.stopPropagation()">
+      <i class="fas fa-plus"></i>
+    </button>
+    <!--UPDATE ONE-->
+    <button *ngIf="action == 'update'" matTooltip="Edit item" mat-icon-button color="accent"
+      (click)="updateEvent.emit(row)" (click)="$event.stopPropagation()">
+      <i class="fas fa-edit"></i>
+    </button>
+    <!--UPDATE MANY ACTION-->
+    <button *ngIf="action == 'updateMany'" matTooltip="Edit selected items" mat-icon-button color="accent"
+      (click)="updateManyEvent.emit(selection.selected)" (click)="$event.stopPropagation()">
+      <i class="fas fa-edit"></i>
+    </button>
+    <!--DISABLE ONE-->
+    <button *ngIf="action == 'disable'" matTooltip="Disable item" mat-icon-button color="accent"
+      (click)="disableEvent.emit(row)" (click)="$event.stopPropagation()">
+      <i class="fas fa-times"></i>
+    </button>
+    <!--DISABLE MANY ACTION-->
+    <button *ngIf="action == 'disableMany' && isMoreThanOneSelected" matTooltip="Disable selected items" mat-icon-button
+      color="accent" (click)="disableManyEvent.emit(selection.selected)" (click)="$event.stopPropagation()">
+      <i class="fas fa-times"></i>
+    </button>
+    <!--DELETE ONE-->
+    <button *ngIf="action == 'delete'" matTooltip="Delete item" mat-icon-button color="accent"
+      (click)="deleteEvent.emit(row)" (click)="$event.stopPropagation()">
+      <i class="fas fa-trash"></i>
+    </button>
+    <!--DELETE MANY ACTION-->
+    <button *ngIf="action == 'deleteMany' && isMoreThanOneSelected" matTooltip="Delete selected items" mat-icon-button
+      color="accent" (click)="deleteManyEvent.emit(selection.selected)" (click)="$event.stopPropagation()">
+      <i class="fas fa-trash"></i>
+    </button>
+    <!-- to keep all rows aligned in table -->
+    <div *ngIf="action == 'dummy'" class="dummy-action" style="height:40px; width: 40px"></div>
+  </ng-container>
+</ng-template>

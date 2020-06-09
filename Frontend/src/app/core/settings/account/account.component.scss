@@ -1,0 +1,49 @@
+form {
+    max-width: 250px;
+    width: auto;
+}
+
+.container {
+    display: flex;
+}
+
+img {
+    max-height: 250px;
+    border-radius: 50%;
+}
+
+.avatar-img {
+    cursor: pointer;
+}
+
+.upload-chip {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 11.5rem;
+    z-index: 100;
+    visibility: hidden;
+}
+
+.upload-chip:hover {
+    visibility: visible;
+}
+
+.avatar-img:hover {
+    // opacity: 0.1;
+
+    + .upload-chip {
+        visibility: visible;
+    }
+}
+
+@media (max-width: 600px) {
+    img {
+        max-height: 160px;
+        margin-bottom: 2rem;
+    }
+
+    .upload-chip {
+        bottom: 16.75rem;
+    }
+}

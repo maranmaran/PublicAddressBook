@@ -1,0 +1,53 @@
+@import "~@angular/material/theming";
+
+@mixin details-component-theme($theme) {
+    // $primary: mat-color(map-get($theme, primary));
+    // $accent: mat-color(map-get($theme, accent));
+    // $warn: mat-color(map-get($theme, warn));
+
+    .details-container {
+        margin-top: 1rem;
+
+        // min-height: calc(302px + 60.57px); // same as mat table 5 rows + paginator since they are next to each other quite often
+
+        .detail {
+            margin-bottom: 5px;
+        }
+
+        .details-header {
+            padding-top: 1rem;
+            padding-left: 0.5rem;
+            font-weight: bolder;
+        }
+
+        .details-body {
+            padding-top: 2rem;
+            padding-left: 1rem;
+        }
+
+        .details-footer {
+            padding-top: 2rem;
+            padding-left: 1rem;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .label-value {
+            margin-left: 1rem;
+        }
+
+        .details-footer {
+            height: 2rem;
+        }
+    }
+
+    @media (max-width: 599px) {
+        .details-body {
+            padding-top: 0.5rem !important;
+            padding-left: 0.25rem !important;
+            padding-right: 0.25rem !important;
+        }
+    }
+}
