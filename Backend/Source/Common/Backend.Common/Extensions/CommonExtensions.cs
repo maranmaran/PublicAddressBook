@@ -11,12 +11,27 @@ namespace Backend.Common.Extensions
 {
     public static class CommonExtensions
     {
+        /// <summary>
+        /// Clones object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
         public static T Clone<T>(this T source)
         {
             var serialized = JsonConvert.SerializeObject(source);
             return JsonConvert.DeserializeObject<T>(serialized);
         }
 
+        /// <summary>
+        /// Sorts prop by given direction
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="selector"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static IQueryable<TEntity> Sort<TEntity, TKey>(
             this IQueryable<TEntity> collection,
             Expression<Func<TEntity, TKey>> selector,
@@ -36,6 +51,15 @@ namespace Backend.Common.Extensions
             return collection;
         }
 
+        /// <summary>
+        /// Sorts prop by given props and direction in sequential manner
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="collection"></param>
+        /// <param name="selectors"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public static IQueryable<TEntity> SortThenBy<TEntity, TKey>(
             this IQueryable<TEntity> collection,
             IEnumerable<Expression<Func<TEntity, TKey>>> selectors,
@@ -69,6 +93,12 @@ namespace Backend.Common.Extensions
             return collection;
         }
 
+        /// <summary>
+        /// Convert stream to byte array
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public static async Task<byte[]> ToByteArray(this Stream stream, CancellationToken cancellationToken = default)
         {
             await using var memStream = new MemoryStream();

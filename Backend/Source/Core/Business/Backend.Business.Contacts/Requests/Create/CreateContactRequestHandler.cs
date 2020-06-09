@@ -6,6 +6,7 @@ using Backend.Infrastructure.Exceptions;
 using Backend.Library.Logging.Interfaces;
 using MediatR;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,10 +35,10 @@ namespace Backend.Business.Contacts.Requests.Create
             {
                 var contact = _mapper.Map<CreateContactRequest, Contact>(request);
 
+                //Get phone numbers if any
                 if (!request.PhoneNumbers.IsNullOrEmpty())
                 {
-                    var phoneNumbers = request.PhoneNumbers.Select(x => new PhoneNumber() { Number = x }).ToList();
-                    contact.PhoneNumbers = phoneNumbers;
+                    contact.PhoneNumbers = Factory.ScaffoldPhoneNumbers(request.PhoneNumbers).ToList();
                 }
 
                 await _context.Contacts.AddAsync(contact, cancellationToken);
@@ -52,5 +53,7 @@ namespace Backend.Business.Contacts.Requests.Create
                 throw new CreateFailureException(nameof(CreateContactRequest), e);
             }
         }
+
+       
     }
 }

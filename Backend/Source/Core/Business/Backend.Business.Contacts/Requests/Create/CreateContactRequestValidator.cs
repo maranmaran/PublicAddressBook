@@ -16,17 +16,20 @@ namespace Backend.Business.Contacts.Requests.Create
                 .Transform(x => x?.Trim())
                 .NotNull().WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_ADDRESS")
                 .NotEmpty().WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_ADDRESS")
-                .NotEqual(" ").WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_ADDRESS");
+                .NotEqual(" ").WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_ADDRESS")
+                .MaximumLength(100).WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_ADDRESS");
 
             RuleFor(x => x.Name)
                 .Transform(x => x?.Trim())
                 .NotNull().WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_NAME")
                 .NotEmpty().WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_NAME")
-                .NotEqual(" ").WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_NAME");
+                .NotEqual(" ").WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_NAME")
+                .MaximumLength(200).WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_NAME");
 
             RuleForEach(x => x.PhoneNumbers)
                 .NotNull().WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_PHONE_NUMBER")
                 .NotEmpty().WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_PHONE_NUMBER")
+                .MaximumLength(50).WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_PHONE_NUMBER")
                 .NotEqual(" ").WithMessage("CONTACT.VALIDATION_ERRORS.INVALID_PHONE_NUMBER");
 
             RuleFor(x => x)

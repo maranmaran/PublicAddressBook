@@ -9,8 +9,17 @@ using System.Threading.Tasks;
 
 namespace Backend.API.Controllers
 {
+    /// <summary>
+    /// Authorization API
+    /// </summary>
     public class AuthorizationController : BaseController
     {
+        /// <summary>
+        /// Signs user in 
+        /// </summary>
+        /// <param name="request">Request containing sign in information like username and password</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> SignIn([FromBody] SignInRequest request, CancellationToken cancellationToken = default)
@@ -21,6 +30,12 @@ namespace Backend.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Gets information that's needed for authenticated user by ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> CurrentUserInformation(Guid id, CancellationToken cancellationToken = default)
         {
@@ -29,6 +44,12 @@ namespace Backend.API.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Changes password for user
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordRequest request, CancellationToken cancellationToken = default)
         {

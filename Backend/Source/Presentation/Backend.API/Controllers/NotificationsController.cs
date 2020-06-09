@@ -6,8 +6,19 @@ using System.Threading.Tasks;
 
 namespace Backend.API.Controllers
 {
+    /// <summary>
+    /// Notifications API
+    /// </summary>
     public class NotificationsController : BaseController
     {
+        /// <summary>
+        /// Gets paged notification history
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         [HttpGet("{userId}/{page}/{pageSize}")]
         public async Task<IActionResult> GetNotificationHistory(Guid userId, int page, int pageSize, CancellationToken cancellationToken = default)
         {

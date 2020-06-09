@@ -26,6 +26,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
@@ -176,6 +177,10 @@ namespace Backend.API.Extensions
             services.AddSwaggerGen(action =>
             {
                 action.SwaggerDoc("v1.0", new OpenApiInfo { Title = "Backend API", Version = "1.0" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                action.IncludeXmlComments(xmlPath);
 
                 action.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {

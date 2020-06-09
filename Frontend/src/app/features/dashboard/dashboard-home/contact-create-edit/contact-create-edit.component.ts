@@ -21,7 +21,11 @@ import { enableErrorDialogs } from './../../../../../ngrx/user-interface/ui.acti
 @Component({
   selector: 'app-contact-create-edit',
   templateUrl: './contact-create-edit.component.html',
-  styleUrls: ['./contact-create-edit.component.scss']
+  styleUrls: ['./contact-create-edit.component.scss'],
+  providers: [
+    PhoneValidationService,
+    // AddressValidationService
+  ]
 })
 export class ContactCreateEditComponent implements OnInit, OnDestroy {
 
@@ -31,6 +35,7 @@ export class ContactCreateEditComponent implements OnInit, OnDestroy {
     private contactService: ContactService,
     private dialogRef: MatDialogRef<ContactCreateEditComponent>,
     private phoneValidationService: PhoneValidationService,
+    // private addressValidationService: AddressValidationService,
     @Inject(MAT_DIALOG_DATA) public data: { title: string, action: CRUD, contact: Contact }) { }
 
   form: FormGroup;
@@ -51,6 +56,7 @@ export class ContactCreateEditComponent implements OnInit, OnDestroy {
   createForm() {
     this.form = new FormGroup({
       name: new FormControl(this.contact.name, [Validators.required]),
+      // address: new FormControl(this.contact.address, [Validators.required], AddressValidator.isValidAddress(this.addressValidationService)),
       address: new FormControl(this.contact.address, [Validators.required]),
       phoneNumbers: new FormArray([])
     });

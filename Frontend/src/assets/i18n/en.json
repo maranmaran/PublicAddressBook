@@ -142,7 +142,9 @@
   },
   "VALIDATION": {
     "REQUIRED": "Required field",
+    "ADDRESSINVALID": "Invalid address",
     "CONTACT": {
+      "INVALID_PHONE_NUMBER": "Invalid phone number",
       "VALIDATION_ERRORS": {
         "INVALID_ADDRESS": "Invalid address",
         "INVALID_NAME": "Invalid name",

@@ -7,6 +7,11 @@ namespace Backend.Common.Extensions
     {
         public const int ImageMinimumBytes = 512;
 
+        /// <summary>
+        /// Check if form file is image
+        /// </summary>
+        /// <param name="postedFile"></param>
+        /// <returns></returns>
         public static bool IsImage(this IFormFile postedFile)
         {
             //-------------------------------------------

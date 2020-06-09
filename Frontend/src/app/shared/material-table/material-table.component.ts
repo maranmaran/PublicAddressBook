@@ -191,8 +191,10 @@ export class MaterialTableComponent implements OnInit, AfterViewInit, OnDestroy 
     if (this.config.pagingOptions.serverSidePaging) {
 
       this.pagingModel.filterQuery = filterValueFormatted;
+      this.pagingModel.page = 0;
       this.pagingChangeEvent.emit(this.pagingModel);
       this.pagingModel.filterQuery = filterValue;
+      this.selection.clear();
 
     } else {
 

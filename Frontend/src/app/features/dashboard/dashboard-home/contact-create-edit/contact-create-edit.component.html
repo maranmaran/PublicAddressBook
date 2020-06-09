@@ -44,7 +44,7 @@
                 <input matInput [formControl]="phoneNumbers.controls[i]"
                     placeholder="{{ 'CONTACT.PHONE_NUMBER' | translate}}">
                 <mat-error *ngIf="phoneNumberControl?.errors?.phoneInvalid">
-                    <div class="validation-error">Invalid phone number</div>
+                    <div class="validation-error">{{'VALIDATION.CONTACT.INVALID_PHONE_NUMBER' | translate}}</div>
                 </mat-error>
             </mat-form-field>
 
@@ -62,7 +62,7 @@
     </form>
 </div>
 
-<mat-error *ngIf="globalErrors && globalErrors.length > 0">
+<mat-error class="mt-4" *ngIf="globalErrors && globalErrors.length > 0">
     <div *ngFor="let err of globalErrors">
         {{ 'VALIDATION.' + err | translate }}
     </div>

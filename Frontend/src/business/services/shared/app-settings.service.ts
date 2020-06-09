@@ -50,14 +50,34 @@ export class AppSettingsService {
     return environment.showStackTrace;
   }
 
-  public get numverifyAccessKey(): string {
+  /*
+  * Api key for phone validation service.. 
+  */
+  public get phoneValidationServiceAPIKey(): string {
 
-    if (environment.numverifyAccess == 'YourAccessKey')
-      return null;
+    if (!environment.phoneValidationServiceAPIKey || environment.phoneValidationServiceAPIKey == 'API_KEY')
+      throw new Error("Please add API key");
 
-    return environment.numverifyAccess;
+    return environment.phoneValidationServiceAPIKey;
   }
 
+  // public get addressValidationServiceAPIKey(): string {
+
+  //   if (!environment.addressValidationServiceAPIKey || environment.addressValidationServiceAPIKey == 'API_KEY')
+  //     throw new Error("Please add API key");
+
+  //   return environment.addressValidationServiceAPIKey;
+  // }
+
+  // public get addressValidationServiceUserID(): string {
+
+  //   if (!environment.addressValidationServiceUserID || environment.addressValidationServiceUserID == 'USER_ID')
+  //     throw new Error("Please add User ID");
+
+  //   return environment.addressValidationServiceUserID;
+  // }
+
+  // Custom toast
   public get systemNotificationToastConfig() {
     return {
       timeOut: 2000,
@@ -69,6 +89,7 @@ export class AppSettingsService {
     };
   }
 
+  // Default toast
   public get defaultNotificationConfig() {
     return {
       timeOut: 2000,

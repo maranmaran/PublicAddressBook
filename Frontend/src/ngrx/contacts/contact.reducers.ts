@@ -33,7 +33,7 @@ export const contactReducer: ActionReducer<ContactState, Action> = createReducer
   // GET ALL PAGED
   on(ContactActions.contactsFetched, (state: ContactState, payload: { entities: Contact[], totalItems: number, pagingModel: PagingModel }) => {
     return {
-      ...adapterContact.addAll(payload.entities, state),
+      ...adapterContact.setAll(payload.entities, state),
       totalItems: payload.totalItems,
       pagingModel: payload.pagingModel
     };

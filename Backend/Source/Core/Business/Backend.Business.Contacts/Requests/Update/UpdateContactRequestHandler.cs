@@ -7,6 +7,7 @@ using Backend.Library.Logging.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,8 +42,7 @@ namespace Backend.Business.Contacts.Requests.Update
                 _context.PhoneNumbers.RemoveRange(contact.PhoneNumbers);
                 if (!request.PhoneNumbers.IsNullOrEmpty())
                 {
-                    var phoneNumbers = request.PhoneNumbers.Select(x => new PhoneNumber() { Number = x }).ToList();
-                    contact.PhoneNumbers = phoneNumbers;
+                    contact.PhoneNumbers = Factory.ScaffoldPhoneNumbers(request.PhoneNumbers).ToList(); ;
                 }
 
                 _context.Contacts.Update(contact);
@@ -55,6 +55,11 @@ namespace Backend.Business.Contacts.Requests.Update
                 await _loggingService.LogInfo(e, "Failed to update contact");
                 throw new UpdateFailureException("Could not update contact", request.Id, e);
             }
+        }
+
+        internal IEnumerable<PhoneNumber> ScaffoldPhoneNumbers(IEnumerable<string> phoneNumbers)
+        {
+            return phoneNumbers.Select(x => new PhoneNumber() { Number = x }).ToList();
         }
     }
 }

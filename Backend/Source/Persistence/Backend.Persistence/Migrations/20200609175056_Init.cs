@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace Backend.Persistence.Migrations
 {
@@ -204,7 +204,6 @@ namespace Backend.Persistence.Migrations
                 columns: new[] { "Id", "NotificationType", "UserSettingId" },
                 values: new object[,]
                 {
-                    { new Guid("71691ddc-039f-4606-b614-ff4a19516c00"), "MediaAdded", new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583") },
                     { new Guid("71691ddc-039f-4606-b614-ff4a19516c01"), "ContactChanged", new Guid("8d399c00-5684-4a54-9c2c-b44a485c3583") }
                 });
 

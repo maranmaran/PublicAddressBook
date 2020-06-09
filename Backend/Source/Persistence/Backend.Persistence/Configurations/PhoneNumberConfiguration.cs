@@ -8,6 +8,8 @@ namespace Backend.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<PhoneNumber> builder)
         {
+            builder.Property(x => x.Number).HasMaxLength(50);
+
             builder
                 .HasOne(x => x.Contact)
                 .WithMany(x => x.PhoneNumbers)
