@@ -27,10 +27,7 @@
 * Audit.NET
 
 ## Architecture
-
-![](Architecture1.PNG)
-<br/>
-![](Architecture2.PNG)
+![](Architecture2.png)
 <br/>
 
 ## Build and run:
@@ -44,8 +41,7 @@
 * Open test project and run unit tests or write `dotnet test`
 
 #### Coverage:
-
-![](Coverage.PNG)
+![](Covereage.PNG)
 <br/>
 
 # Frontend project:
@@ -68,3 +64,5 @@
 * Login: http://localhost:4200/auth/login (Username: user, Password: user)
 
 
+# Demo
+>>Video here<<
