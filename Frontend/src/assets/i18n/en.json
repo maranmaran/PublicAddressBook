@@ -24,7 +24,9 @@
     "SEARCH": "Search",
     "VIDEO_NOT_SUPPORTED": "Your browser does not support this video tag",
     "ACTIVATE": "Activate",
-    "DEACTIVATE": "Deactivate"
+    "DEACTIVATE": "Deactivate",
+    "LIGHT": "Light",
+    "DARK": "Dark"
   },
   "CONTACT": {
     "CONTACT_CHANGED_LABEL": "Contact changed",

@@ -18,14 +18,9 @@
                 <a mat-list-item (click)="openTab('General')">
                     {{ 'SETTINGS.GENERAL_LABEL' | translate }}
                 </a>
-                <mat-divider></mat-divider>
-                <a mat-list-item (click)="openTab('Account')">
+                <!-- <a mat-list-item (click)="openTab('Account')">
                     {{ 'SETTINGS.ACCOUNT_LABEL' | translate }}
-                </a>
-                <mat-divider></mat-divider>
-                <a mat-list-item (click)="openTab('Billing')" *ngIf="(isCoach | async)">
-                    {{ 'SETTINGS.BILLING_LABEL' | translate }}
-                </a>
+                </a> -->
 
             </mat-accordion>
         </mat-nav-list>
@@ -49,7 +44,7 @@
             <!-- settings content -->
             <div [hidden]="(loading$ | async)" [ngSwitch]="activeTab">
                 <app-general *ngSwitchCase="'General'"></app-general>
-                <app-account *ngSwitchCase="'Account'"></app-account>
+                <!-- <app-account *ngSwitchCase="'Account'"></app-account> -->
             </div>
 
             <!-- loader -->

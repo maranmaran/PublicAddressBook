@@ -3,6 +3,7 @@ using Backend.Common.Extensions;
 using Backend.Domain;
 using Backend.Domain.Entities.Contacts;
 using Backend.Infrastructure.Exceptions;
+using Backend.Library.Logging.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,11 +17,13 @@ namespace Backend.Business.Contacts.Requests.Update
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILoggingService _loggingService;
 
-        public UpdateContactRequestHandler(IApplicationDbContext context, IMapper mapper)
+        public UpdateContactRequestHandler(IApplicationDbContext context, IMapper mapper, ILoggingService loggingService)
         {
             _context = context;
             _mapper = mapper;
+            _loggingService = loggingService;
         }
 
 
@@ -29,6 +32,10 @@ namespace Backend.Business.Contacts.Requests.Update
             try
             {
                 var contact = await _context.Contacts.Include(x => x.PhoneNumbers).FirstOrDefaultAsync(x => x.Id == request.Id, cancellationToken);
+
+                if (contact == null)
+                    throw new NotFoundException(nameof(Contact), request.Id);
+
                 _mapper.Map(request, contact);
 
                 _context.PhoneNumbers.RemoveRange(contact.PhoneNumbers);
@@ -45,6 +52,7 @@ namespace Backend.Business.Contacts.Requests.Update
             }
             catch (Exception e)
             {
+                await _loggingService.LogInfo(e, "Failed to update contact");
                 throw new UpdateFailureException("Could not update contact", request.Id, e);
             }
         }

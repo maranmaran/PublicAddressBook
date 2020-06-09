@@ -2,6 +2,7 @@
 using Backend.Common.Extensions;
 using Backend.Domain;
 using Backend.Domain.Entities.Contacts;
+using Backend.Infrastructure.Exceptions;
 using Backend.Library.Logging.Interfaces;
 using MediatR;
 using System;
@@ -48,7 +49,7 @@ namespace Backend.Business.Contacts.Requests.Create
             catch (Exception e)
             {
                 await _logger.LogInfo(e, "Failed to create contact");
-                throw new Exception(nameof(CreateContactRequest), e);
+                throw new CreateFailureException(nameof(CreateContactRequest), e);
             }
         }
     }

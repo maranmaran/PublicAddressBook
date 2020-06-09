@@ -1,5 +1,4 @@
 ﻿using Backend.Domain.Entities.Contacts;
-using Backend.Domain.Entities.Media;
 using Backend.Domain.Enum;
 using System;
 
@@ -11,8 +10,6 @@ namespace Backend.Business.Notifications
         {
             switch (entityType)
             {
-                case nameof(MediaFile):
-                    return NotificationType.MediaAdded;
                 case nameof(Contact):
                     return NotificationType.ContactChanged;
                 default:

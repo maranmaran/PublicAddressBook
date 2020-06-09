@@ -43,7 +43,7 @@
             <mat-form-field>
                 <input matInput [formControl]="phoneNumbers.controls[i]"
                     placeholder="{{ 'CONTACT.PHONE_NUMBER' | translate}}">
-                <mat-error *ngIf="phoneNumbers[i]?.errors?.phoneInvalid">
+                <mat-error *ngIf="phoneNumberControl?.errors?.phoneInvalid">
                     <div class="validation-error">Invalid phone number</div>
                 </mat-error>
             </mat-form-field>

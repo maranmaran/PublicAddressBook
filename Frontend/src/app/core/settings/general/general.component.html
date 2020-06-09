@@ -28,7 +28,7 @@
         <div fxLayout="row" fxLayoutGap="1rem">
             <label>{{ 'SETTINGS.GENERAL.THEME' | translate }}: </label>
             <mat-slide-toggle [color]="'accent'" [checked]="themeButtonChecked" (change)="onThemeChange($event)">
-                {{ userSetting.theme }}
+                {{ 'SHARED.' + (userSetting.theme | uppercase) | translate }}
             </mat-slide-toggle>
         </div>
 
@@ -41,7 +41,7 @@
 
             <tr *ngFor="let notificationSetting of userSetting.notificationSettings">
                 <!-- TODO: Make this pascal case into something meaningful... -->
-                <td class="text-center"> {{ notificationTypeLabels[notificationSetting.notificationType] | translate}}
+                <td class="text-center"> {{ notificationTypeLabels[notificationSetting.notificationType] | translate }}
                 </td>
                 <td class="text-center">
                     <mat-checkbox (change)="onNotificationSettingCheckboxChecked($event, notificationSetting)"

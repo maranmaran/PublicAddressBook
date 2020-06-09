@@ -1,5 +1,5 @@
 ﻿using Backend.Business.Notifications;
-using Backend.Domain.Entities.Media;
+using Backend.Domain.Entities.Contacts;
 using Backend.Domain.Enum;
 using System;
 using System.Threading.Tasks;
@@ -9,10 +9,11 @@ namespace Backend.BusinessTests.Notification
 {
     public class NotificationHelperTests
     {
+        // TODO use Theory and inline data if notification type expands
         [Fact]
         public async Task NotificationHelper_GetType_Gets()
         {
-            Assert.Equal(NotificationType.MediaAdded, NotificationHelper.GetNotificationType(nameof(MediaFile)));
+            Assert.Equal(NotificationType.ContactChanged, NotificationHelper.GetNotificationType(nameof(Contact)));
         }
 
         [Fact]
