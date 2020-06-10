@@ -85,6 +85,8 @@ export class ContactListComponent implements OnInit {
     return this.store.select(contacts)
       .subscribe((state: { entities: Contact[], totalItems: number, pagingModel: PagingModel }) => {
 
+        this.pagingModelCache = state.pagingModel;
+
         this.contacts = state.entities.slice(0, state.pagingModel.pageSize);
 
         this.tableDatasource.updateDatasource([...this.contacts]);
@@ -192,7 +194,6 @@ export class ContactListComponent implements OnInit {
 
   pagingModelCache: PagingModel;
   onPagingChange(model: PagingModel) {
-    this.pagingModelCache = model;
     this._fetchContacts(model).subscribe(_ => _, err => console.log(err));
   }
 

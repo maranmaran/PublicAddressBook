@@ -42,8 +42,8 @@
     "NO_DATA": "Nema podataka"
   },
   "NOTIFICATIONS": {
-    "MEDIA_ADDED": "Media added",
-    "CONTACT_CHANGED": "Contact changed",
+    "MEDIA_ADDED": "Dodana multimedija",
+    "CONTACT_CHANGED": "Promijenjen kontakt",
     "NO_NOTIFICATIONS": "Nema više obavijesti za prikaz",
     "SHOW_MORE": "Prikaži još obavijesti"
   },

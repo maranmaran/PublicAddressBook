@@ -192,8 +192,8 @@ export class MaterialTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
       this.pagingModel.filterQuery = filterValueFormatted;
       this.pagingModel.page = 0;
+      setTimeout(_ => this.pagingModel.filterQuery = filterValue);
       this.pagingChangeEvent.emit(this.pagingModel);
-      this.pagingModel.filterQuery = filterValue;
 
     } else {
 

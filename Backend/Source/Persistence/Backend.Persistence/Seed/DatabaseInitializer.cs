@@ -1,4 +1,5 @@
-﻿using Backend.Domain.Entities.User;
+﻿using Backend.Domain.Entities.Contacts;
+using Backend.Domain.Entities.User;
 using Backend.Domain.Enum;
 using Backend.Domain.Factories;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,8 @@ namespace Backend.Persistence.Seed
             var users = SeedUsers(b);
             var userSettingIds = SeedUserSettings(b, users.Select(x => x.Id).ToArray(), users.Select(x => x.UserSettingId).ToArray());
             SeedNotificationSettings(b, userSettingIds);
+            var contacts = SeedContacts(b);
+            SeedPhoneNumbers(b, contacts);
         }
 
         // USERS
@@ -69,6 +72,38 @@ namespace Backend.Persistence.Seed
             {
                 user,
             };
+        }
+
+        private static Contact[] SeedContacts(ModelBuilder b)
+        {
+            var contacts = ContactsSeeder.GetContacts();
+
+            b.Entity<Contact>().HasData(contacts);
+
+            return contacts;
+
+        }
+
+        private static void SeedPhoneNumbers(ModelBuilder b, Contact[] contacts)
+        {
+            var numbers = new List<PhoneNumber>();
+            foreach (var contact in contacts)
+            {
+                numbers.Add(new PhoneNumber()
+                {
+                    Id = Guid.NewGuid(),
+                    ContactId = contact.Id,
+                    Number = "385989077942"
+                });
+                numbers.Add(new PhoneNumber()
+                {
+                    Id = Guid.NewGuid(),
+                    ContactId = contact.Id,
+                    Number = "361-757-3075"
+                });
+            }
+
+            b.Entity<PhoneNumber>().HasData(numbers);
         }
     }
 }
