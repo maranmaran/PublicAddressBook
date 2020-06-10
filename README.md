@@ -19,7 +19,7 @@
 ## Technologies: 
 * .Net Core 3.1
 * SignalR
-* PostgreSQL
+* PostgreSQL (latest)
 * EF Core
 * MediatR
 * Fluent validation
