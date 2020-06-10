@@ -1,27 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Backend.Common.Extensions
 {
     public static class CommonExtensions
     {
-        /// <summary>
-        /// Clones object
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        public static T Clone<T>(this T source)
-        {
-            var serialized = JsonConvert.SerializeObject(source);
-            return JsonConvert.DeserializeObject<T>(serialized);
-        }
 
         /// <summary>
         /// Sorts prop by given direction
@@ -49,62 +33,6 @@ namespace Backend.Common.Extensions
             }
 
             return collection;
-        }
-
-        /// <summary>
-        /// Sorts prop by given props and direction in sequential manner
-        /// </summary>
-        /// <typeparam name="TEntity"></typeparam>
-        /// <typeparam name="TKey"></typeparam>
-        /// <param name="collection"></param>
-        /// <param name="selectors"></param>
-        /// <param name="direction"></param>
-        /// <returns></returns>
-        public static IQueryable<TEntity> SortThenBy<TEntity, TKey>(
-            this IQueryable<TEntity> collection,
-            IEnumerable<Expression<Func<TEntity, TKey>>> selectors,
-            string direction)
-            where TEntity : class
-        {
-            if (direction == "asc")
-            {
-                var orderedCollection = collection.OrderBy(selectors.First());
-
-                foreach (var selector in selectors.Skip(1))
-                {
-                    orderedCollection.ThenBy(selector);
-                }
-
-                return orderedCollection;
-            }
-
-            if (direction == "desc")
-            {
-                var orderedCollection = collection.OrderByDescending(selectors.First());
-
-                foreach (var selector in selectors.Skip(1))
-                {
-                    orderedCollection.ThenByDescending(selector);
-                }
-
-                return orderedCollection;
-            }
-
-            return collection;
-        }
-
-        /// <summary>
-        /// Convert stream to byte array
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public static async Task<byte[]> ToByteArray(this Stream stream, CancellationToken cancellationToken = default)
-        {
-            await using var memStream = new MemoryStream();
-            await stream.CopyToAsync(memStream, cancellationToken);
-
-            return memStream.ToArray();
         }
 
     }

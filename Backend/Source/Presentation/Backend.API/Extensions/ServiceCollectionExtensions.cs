@@ -6,7 +6,6 @@ using Backend.Infrastructure.Extensions;
 using Backend.Infrastructure.Providers;
 using Backend.Library.AmazonS3.Extensions;
 using Backend.Library.Logging.Extensions;
-using Backend.Library.MediaCompression.Extensions;
 using Backend.Persistence;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -68,7 +67,6 @@ namespace Backend.API.Extensions
                     // list all assemblies containing validators
                     Assembly.GetAssembly(typeof(Business.Notifications.Mappings)),
                     Assembly.GetAssembly(typeof(Business.Authorization.Mappings)),
-                    Assembly.GetAssembly(typeof(Business.Media.Mappings)),
                     Assembly.GetAssembly(typeof(Business.Users.Mappings)),
                     Assembly.GetAssembly(typeof(Business.Contacts.Mappings)),
                 }))
@@ -203,7 +201,6 @@ namespace Backend.API.Extensions
             var assemblies = new Assembly[]
             {
                 Assembly.GetAssembly(typeof(Business.Notifications.Mappings)),
-                Assembly.GetAssembly(typeof(Business.Media.Mappings)),
                 Assembly.GetAssembly(typeof(Business.Contacts.Mappings)),
                 Assembly.GetAssembly(typeof(Business.Authorization.Mappings)),
                 Assembly.GetAssembly(typeof(Business.Users.Mappings)),
@@ -247,7 +244,6 @@ namespace Backend.API.Extensions
                 var config = new MapperConfiguration(c =>
                 {
                     c.AddProfile<Business.Notifications.Mappings>();
-                    c.AddProfile<Business.Media.Mappings>();
                     c.AddProfile<Business.Contacts.Mappings>();
                     c.AddProfile<Business.Authorization.Mappings>();
                     c.AddProfile<Business.Users.Mappings>();
@@ -315,7 +311,7 @@ namespace Backend.API.Extensions
             services.ConfigureInfrastructureServices();
             services.ConfigureS3Services();
             services.ConfigureLoggingService();
-            services.ConfigureMediaCompressionService(); // when needed
+            //services.ConfigureMediaCompressionService(); // when needed
             services.ConfigureHttpContextAccessor();
         }
 

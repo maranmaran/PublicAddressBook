@@ -1,5 +1,8 @@
+using Backend.Domain;
 using Backend.Library.Logging.Interfaces;
+using Backend.Persistence;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -23,10 +26,10 @@ namespace Backend.API
                 try
                 {
                     //// comment this if you don't want seed values in migrations
-                    //var contextInterface = services.GetService<IApplicationDbContext>();
-                    //var context = (ApplicationDbContext)contextInterface;
-                    //context.Database.Migrate();
-                    //loggingService.LogInfo("Database successfully migrated and seeded").Wait();
+                    var contextInterface = services.GetService<IApplicationDbContext>();
+                    var context = (ApplicationDbContext)contextInterface;
+                    context.Database.Migrate();
+                    loggingService.LogInfo("Database successfully migrated and seeded").Wait();
 
                     loggingService.LogInfo("Application started.").Wait();
                     host.Run();
