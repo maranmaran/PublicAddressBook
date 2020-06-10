@@ -65,4 +65,26 @@
 
 
 # Demo
->>Video here<<
+https://www.youtube.com/watch?v=PrJv_Tnhzhc&feature=youtu.be
+
+# Other projects
+I'm recently working on side project 
+https://github.com/maranmaran/TrainingCompanion
+If you're interested to take additional peek at my personal in-free-time work this involves
+* Responsive web app
+* Push Notifications (SignalR)
+* Chat (SignalR)
+  * Full screen
+  * Small facebook, linkedin
+* Auditing
+* Media files (S3)
+* Trainings event calendar
+* Reporting
+* Import/Export
+* Advanced training program builder and scheduling
+* Dynamic realtime personalized dashboard
+* I18n
+* A11y
+* Payment system
+
+Lots more.. but it's big Work in progress.. if whoever reviews this task is free to go through repo or request demo I'd be happy to demonstrate and get another pair of eyes for criticism. 
