@@ -11,6 +11,10 @@
   <li>Provide a way of receiveing live updates for connected clients (signalR, websockets)</li>
 </ul>
 
+### Demo
+https://www.youtube.com/watch?v=PrJv_Tnhzhc&feature=youtu.be
+* Shows above functionalities
+
 ### Start
 <p>Clone repo</p>
 <p>Make sure you have admin rights</p>
@@ -63,9 +67,6 @@
 * Start</li>
 * Public contacts: http://localhost:4200/contacts
 * Login: http://localhost:4200/auth/login (Username: user, Password: user)
-
-# Demo
-https://www.youtube.com/watch?v=PrJv_Tnhzhc&feature=youtu.be
 
 # Improvements + TODO
 * Validation of address through some geocode service like Google Maps API
