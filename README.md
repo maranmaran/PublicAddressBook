@@ -63,9 +63,12 @@
 * Public contacts: http://localhost:4200/contacts
 * Login: http://localhost:4200/auth/login (Username: user, Password: user)
 
-
 # Demo
 https://www.youtube.com/watch?v=PrJv_Tnhzhc&feature=youtu.be
+
+# Improvements + TODO
+* Validation of address through some geocode service like Google Maps API
+* Validation for phone number duplicates
 
 # Other projects
 I'm recently working on side project 
