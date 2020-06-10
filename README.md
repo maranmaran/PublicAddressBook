@@ -78,7 +78,7 @@ If you're interested to take additional peek at my personal in-free-time work th
 * Push Notifications (SignalR)
 * Chat (SignalR)
   * Full screen
-  * Small facebook, linkedin
+  * Small facebook, linkedin like chat
 * Auditing
 * Media files (S3)
 * Trainings event calendar
