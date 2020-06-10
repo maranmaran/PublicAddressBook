@@ -25,6 +25,7 @@
 * Fluent validation
 * Automapper
 * Audit.NET
+* Swagger 
 
 ## Architecture
 ![](Architecture2.png)
