@@ -34,7 +34,7 @@
 ## Build and run:
 * Open project
 * Set Backend.API project as startup
-* Create appSettings.Development.json -> Use appSettings.json as cook-book
+* Create appsettings.Development.json -> Use appSettings.json as cook-book
 * Start http://localhost:61634/api/index.html
 * Database should automatically seed.
 
