@@ -194,7 +194,6 @@ export class MaterialTableComponent implements OnInit, AfterViewInit, OnDestroy 
       this.pagingModel.page = 0;
       this.pagingChangeEvent.emit(this.pagingModel);
       this.pagingModel.filterQuery = filterValue;
-      this.selection.clear();
 
     } else {
 
@@ -240,28 +239,25 @@ export class MaterialTableComponent implements OnInit, AfterViewInit, OnDestroy 
 
   onSelect(entity: any, keepSelected: boolean = false) {
 
+
+    if (!entity) {
+      this.selection.clear();
+      return this.selectEvent.emit(null);
+    }
+
     if (this.config.usesExpandableRows) {
       this.handleExpandableRow(entity);
     }
 
-
-    var selectedTemp = this.selection.isSelected(entity.id);
+    var isSelected = this.selection.isSelected(entity.id);
     this.selection.clear();
 
-    if (!selectedTemp || keepSelected) { // if it wasn't selected
-      this.selection.toggle(entity.id); // toggle
-    } else { // else don't
-      this.selectEvent.emit(null);
-      return;
+    if (isSelected && !keepSelected) { // if it wasn't selected
+      return this.selectEvent.emit(null);
     }
 
-    // // if multiple or none selected - remove details
-    // if (this.selection.selected.length > 1 || this.selection.isEmpty()) {
-    //   this.selectEvent.emit(null);
-    //   return;
-    // }
-
     // new selection
+    this.selection.toggle(entity.id); // toggle
     this.selectEvent.emit(entity);
   }
 
@@ -304,12 +300,14 @@ export class MaterialTableComponent implements OnInit, AfterViewInit, OnDestroy 
     this.pagingModel.page = page.pageIndex;
     this.pagingModel.pageSize = page.pageSize;
     this.pagingChangeEvent.emit(this.pagingModel);
+    this.onSelect(null);
   }
 
   onSortChange(sort: Sort) {
     this.pagingModel.sortBy = sort.active;
     this.pagingModel.sortDirection = sort.direction;
     this.pagingChangeEvent.emit(this.pagingModel);
+    this.onSelect(null);
   }
 
   onDragStarted() {
