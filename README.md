@@ -69,6 +69,8 @@ https://www.youtube.com/watch?v=PrJv_Tnhzhc&feature=youtu.be
 
 # Improvements + TODO
 * Validation of address through some geocode service like Google Maps API
+  * Just a note I tried with neutrino api and received problems on API end because of Allowed origins
+  * Google maps API just has too low "free" quota and I couldn't put use it for this demo, but I did manage to get some queries until I     got request denied because of billing. So some of that address validators code that's commented is valid :) 
 * Validation for phone number duplicates
 
 # Other projects
